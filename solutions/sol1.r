@@ -11,7 +11,11 @@ library(lme4)
 library(ggplot2)
 
 
-#If you get an error message during the install.packages() function, try this code instead
+
+
+
+
+#If you get an error message when running the install.packages() function, try this code instead
 install.packages("tidyverse", repos = "http://cran.us.r-project.org")
 install.packages("report", repos = "http://cran.us.r-project.org")
 install.packages("lme4", repos = "http://cran.us.r-project.org")

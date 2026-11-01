@@ -27,7 +27,7 @@ editor_options:
 ---
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(error = TRUE)
-knitr::opts_knit$set(root.dir = '/Users/tuh20985/Documents/GitHub/intro-to-coding-2026')
+knitr::opts_knit$set(root.dir = here::here())
 ```
 
 
@@ -42,21 +42,7 @@ By the end of this workshop series, our hope is that you will feel comfortable e
 
 # Are you ready to start learning R?
 
-![](Images/Learning_R.jpeg)
-
-# Pre-Workshop: Downloading R and RStudio Software 
-
-Before the workshop, we'll need to download R and RStudio. Throughout the workshop, we'll be working in RStudio, which will allow us to write code in R. So let's make sure we have both R and RStudio installed before we begin!
-
-1. Download an **R CRAN Mirror**, which basically just hosts the R programming language that we will be using in RStudio. https://cran.r-project.org/
-
-2. Download **RStudio**, which is the main software that we will be using to work with R. https://posit.co/download/rstudio-desktop/
-
-3. Download the **intro-to-coding-2026 folder** from the TU-COG Github page (https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2026) by pressing the green **Code** button and downloading the ZIP folder. This is the folder containing all the files that we will be working with for the purposes of this workshop.
-
-4. Open up a new R Markdown document by clicking File > New File > R Markdown. **First time R users will be asked to download packages once they open up an R Markdown file. Click “Yes” to downloading those packages!**
-
-![](images/CodeButton.png)
+![](images/Learning_R.jpeg){width=50%}
 
 
 # Intro to RMarkdown
@@ -90,29 +76,18 @@ That’s because a typical script will interpret any text as a command, unless t
 
 ![](images/RMarkdown_blah.png){width=35%}
 
-The output of any given chunk will appear just below that chunk, rather than in the *R Studio Console Window*. By output, we just mean the product, sum, or status of whatever calculation or item you are asking R to compute and show you.   
-![](images/RMarkdown_Chunk_Output.png)  
+
+Here's a quick overview of the different R Markdown buttons:
+
+**To minimize entire chunks and their output**, press the **Fold code** [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
+
+**To run specific R markdown chunks**, press the **Run Current Chunk** button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
+
+**To run all code up to the current R Markdown chunk**, press the **Run All Chunks Above** [![Run All Chunks Command](images/ChunkRunAll.png)]. 
+
+**To toggle the settings for a given R Markdown chunk**, press the **Modify Chunk Options** button [![Settings Command](images/ChunkSettings.png)].
 
 
-R Markdown grants us greater control over what we see and when we see it. To demonstrate, let’s start by creating a new chunk in our markdown document and entering what we see in the image above:
-
-```{r, add 2 plus 2}
-
-2 + 2
-
-```
-
-With a typical script, if we want to know the output of a line we ran awhile ago, we either have to rerun it or scroll through the console to find it. With Markdown we can minimize entire chunks and their output by using the minimization button [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
-
-If we want to hide output, we can use the expand/collapse button [![Minimize Command](images/OutputMin.png)] on the right side of the output window.
-
-We can choose exactly what we want to run using the the "*Run*" command [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
-
-Also of note, the down-facing arrow (second icon in the upper right corner of the code block) will tell R "Run all of the blocks of command that I have before this block" [![Run All Chunks Command](images/ChunkRunAll.png)]. It can be helpful if you make a mistake and don't want to manually rerun all of the previous blocks one by one to get back to where you were. It also makes your code very easy for other people to run. They can quite literally do it with the click of a button! 
-
-If we click the cog icon in the same tray, we can access the output options and manipulate where output appears and what it looks like, but that's beyond the scope of this review [![Settings Command](images/ChunkSettings.png)].
-
-I know this is a lot of information so don't worry about remembering all of it right now -- I'll talk through some of the buttons we'll be using later on when we start working through our R script!
   
 # R Packages
 
@@ -125,7 +100,7 @@ Packages in R are synonymous with libraries in other languages. They are more or
 
 Every new package is centralized in R’s repository, so even though thousands of people are working on these things independently, you don’t need to leave R to find them. Before they can be used, they must be installed, and you can do that in a pretty simple way:
 
-Importantly, once you install a package, you don't need to install it again. R can remember which packages have been previously installed.
+Importantly, once you install a package, you don't need to install it again. R can remember which packages have been previously installed. This is true even if you are using the same package in different R Markdown scripts!
 
 ```{r install packages, eval = F}
 
@@ -133,14 +108,12 @@ install.packages("PACKAGENAME")
 
 ```
 
-If you need to update a package, you can just re-run the above code. If you’re using R Studio, you can also see a list of your packages and their associated descriptions in the ‘Packages’ Tab of your Viewer Window.
-
-![**Packages tab of viewer window where one can visualize previously installed packages**](images/R Packages.png)
-
 
 ## Loading packages
 
-Now that we have installed a package, that doesn’t mean we can use it yet. We need to tell R “We want access to the functions that this package has during this session" by calling it with the ```library()``` command.
+Now that we have installed a package, that doesn’t mean we can use it yet. 
+
+We need to tell R "We want access to the functions that this package has when running this R Markdown script" by calling it with the ```library()``` command.
 
 ```{r load package via library, eval = F}
 
@@ -152,14 +125,12 @@ Notice that we drop the quotation marks now. We just specify the (case-sensitive
 
 You might be wondering why we need to take this extra step. Sometimes different packages use the same commands, so having more than one of those active at the same time could confuse R (When this does happen, R will usually tell you). Sometimes packages take up a lot of disk space, so having ALL of your packages initialized at once might leave your computer running extremely slow. It’s the same for most languages.
 
-If we ever want to explore the functions contained within a package in conjunction with examples, we can either go to the R documentation website or type ‘??PackageName’ into the Console, which will then populate the Help Tab of the Viewer Window with information on the package.
-
-Lastly, although you only need to install a package once, you have to load in any packages you want to use in a given R session. In other words, after installing a package, you can skip the ```install.packages()``` step moving forward, but you'll still need to run the ```library()``` step each time you want to use the package in R.
+Lastly, although you only need to install a package once, you have to load in any packages you want to use in a given R session. In other words, after installing a package, you can skip the ```install.packages()``` step, but you'll still need to run the ```library()``` step each time you want to use the package in an R script.
 
 Let's try installing and loading in a few package for practice. Let's install and load the following packages in R: **tidyverse, report, lme4, and ggplot2**
 
 ## Exercise: Installing and Loading Packages
-```{r exercise: installing and loading packages, code="'\n\n\n\n'", results=F}
+```{r exercise: installing and loading packages, code="\n\n\n\n", results=F}
 
 
   
@@ -168,11 +139,6 @@ Let's try installing and loading in a few package for practice. Let's install an
 
 ```{r exercise: installing and loading packages - hidden, eval=T, include=F}
 
-install.packages("tidyverse", repos = "http://cran.us.r-project.org")
-install.packages("report", repos = "http://cran.us.r-project.org")
-install.packages("lme4", repos = "http://cran.us.r-project.org")
-install.packages("ggplot2", repos = "http://cran.us.r-project.org")
-
 library(tidyverse)
 library(report)
 library(lme4)
@@ -180,18 +146,18 @@ library(ggplot2)
 
 ```
 
-[Click for solution](https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2026/blob/main/R/solutions/sol1.r)
+[Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol1.r)
 
   
 # Palmerpenguins dataset 
 
-For today's workshop, we'll be working with the palmerpenguins dataset. Please make sure you have the 2 CSV files (palmer-penguins.csv and palmer-penguins_raw.csv) already downloaded!
+For today's workshop, we'll be working with the palmerpenguins dataset. Please make sure you have the 2 CSV files (palmer-penguins_curated.csv and palmer-penguins_raw.csv) already downloaded!
 
 The palmerpenguins data contains two datasets:
 
-1) The **curated** data, which contains size measurements for 344 penguins from three penguin species observed on three islands in the Palmer Archipelago, Antarctica. 
+1) The **curated** dataset, which contains size measurements for 344 penguins from three penguin species observed on three islands in the Palmer Archipelago, Antarctica. 
 
-2) The **raw** data, which contains additional information about the penguins.
+2) The **raw** dataset, which contains additional information about the penguins.
 
 **References**
 palmerpenguins data originally published in:
@@ -212,7 +178,7 @@ Before we start talking about "working directories", let's quickly unpack what a
 
 "File paths" is just a fancy way to refer to the folders and subfolders that exist on someone's computer. Understanding how to navigate file paths is really important for being able to access specific files that you want to work with!
 
-Here's an example of a file path: **"/Users/tuh20985/Documents/GitHub/intro-to-coding-2026"**
+Here's an example of a file path: **"/Users/steven/Desktop/intro-to-r-2026"**
 
 And here's a visualization of what that file path looks like on a computer:
 
@@ -228,7 +194,7 @@ In order to start working with the palmerpenguins datasets, we need to revisit t
 
 A working directory refers to the specific file path on your computer where R (or any programming language) will look for files by default. Like any other language or program, R needs to be told where the file that we’d like to work with is located on our computer. It doesn’t just know automatically where every file is on a person's computer. 
 
-Below we'll use the ```getwd()``` command to find out where where my current working directory is.
+Below we'll use the ```getwd()``` command to find out where where your current working directory is.
 
 ```{r getwd(), eval=T}
 
@@ -236,7 +202,7 @@ getwd() #get your current working directory
 
 ```
 
-As you can see, my working directory is currently set at: **"/Users/tuh20985/Documents/GitHub/intro-to-coding-2026"**
+As you can see, my working directory is currently set at: **"/Users/steven/Desktop/intro-to-r-2026"**
 
 The output probably doesn't make much sense to anyone because this working directory file path is specific to my computer! Each of our working directory file paths will be specific to the computer we are using.
 
@@ -261,24 +227,24 @@ On my computer, here's where the palmerpenguins data exists:
 
 ![](images/FilePath_Visualization_penguins.png)
 
-In order to work with the palmer-penguins.csv file, I'll need to set my working directory to this file path!
+In order to work with the palmer-penguins_curated.csv file, I'll need to set my working directory to this file path!
 
 Let's store this file path in an object called "Path".
 ```{r Setting Working Directory, eval=FALSE,include=TRUE, message=FALSE, warning=FALSE, error=FALSE}
 
 # For Windows
-Path <- "C:/Users/tuh20985/Documents/GitHub/intro-to-coding-2026/data/"
+Path <- "C:/Users/steven/Desktop/intro-to-r-2026/data/"
 
 # For Mac
-Path <- "/Users/tuh20985/Documents/GitHub/intro-to-coding-2026/data/"
+Path <- "/Users/steven/Desktop/intro-to-r-2026/data/"
 
 ```
 
 ```{r Actually Setting Working Directory, eval=TRUE,include=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-Path <- "/Users/tuh20985/Documents/GitHub/intro-to-coding-2026/data/"
+Path <- here::here("data/")
 ``` 
 
-This format of assigning a value to an object, like we did with **Path** and **"/Users/tuh20985/Documents/GitHub/intro-to-coding-2026/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
+This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
 
 We'll next use this **Path** object to set our working directory using the ```setwd()``` command. The ```setwd()``` command tells R where to look for files on our computer.
 
@@ -287,7 +253,7 @@ setwd(Path) #use the setwd() function to assign the "Path" object that we create
 ```
 
 ```{r change root dir, echo=FALSE}
-knitr::opts_knit$set(root.dir = '/Users/tuh20985/Documents/GitHub/intro-to-coding-2026/data')
+knitr::opts_knit$set(root.dir = here::here("data"))
 ```
 
 Amazing! Now that our working directory is set to the correct file path, we can start load in the palmer-penguins data!
@@ -300,12 +266,12 @@ Before we load in the palmer-penguins data, I want to highlight a little termino
 ## How do I load data into R?
 There are many ways to load data into R and they all depend upon what format the data is in. R can handle data from .csv, .xlsx, .txt, .html, .json, SPSS, Stata, SAS, among others. R also has it’s own data format (.RDA, .Rdata). With the exception of .RDA, .csv is often the cleanest means of reading in data. We won’t cover the other formats, but they are fairly exhaustively covered *<hyperlink/in this tutorial/>*. https://www.datacamp.com/tutorial/r-data-import-tutorial
 
-In the most basic sense, we can load our palmer-penguins.csv data file using the read.csv() function like this:
+In the most basic sense, we can load our palmer-penguins_curated.csv data file using the read.csv() function like this:
 
 The ```read.csv()``` command loads in the data. If done correctly, we should see our R **Environment** populate with a dataframe labeled **penguins**. 
 
 ```{r loading in data }
-penguins <- read.csv(file = "palmer-penguins.csv") #Load in the palmer-penguins CSV file and store it in a data frame called "penguins"
+penguins <- read.csv(file = "palmer-penguins_curated.csv") #Load in the palmer-penguins_curated CSV file and store it in a data frame called "penguins"
 ```
 
   
@@ -510,7 +476,7 @@ penguin_chinstrap <- penguins %>%
   filter(species == "Chinstrap")
 ```
 
-[Click for solution](https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2026/blob/main/R/solutions/sol2.r)
+[Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol2.r)
 
 
 ## Missing data 
@@ -773,7 +739,7 @@ penguin_pivot_exercise_long <- penguin_pivot_exercise %>% pivot_longer(
                         values_to = "length") #The name for the new values column
 ```
 
-[Click for solution](https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2026/blob/main/R/solutions/sol3.r)
+[Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol3.r)
 
 
 
@@ -1125,7 +1091,7 @@ library(lme4)
 library(ggplot2)
 
 #Step 2: Read the data into R
-penguins <- read.csv(file = "palmer-penguins.csv") #Load in the penguins CSV file and store it in a data frame called "penguins"
+penguins <- read.csv(file = "palmer-penguins_curated.csv") #Load in the penguins CSV file and store it in a data frame called "penguins"
 
 #Step 3: Subset the columns you are interested in using the select() function
 penguins_length_pipeline <- penguins %>%
@@ -1169,7 +1135,7 @@ ggplot(penguins_pipeline_long.se, aes(x = anatomical_region, y = length, fill = 
 
 # Conclusion
 
-Congrats! You made it through an R workshop! Hopefully you feel like you’re starting to pick up on some things! It’s also totally okay if things aren’t clicking just yet, but regardless of how you may be feeling, I will always be happy to work with you if you have any specific questions as you move forward on your coding journey. My email is stevent.martinez@temple.edu or you can always send me a Slack!
+Congrats!!! You made it through an R workshop!! Hopefully you feel like you’re starting to pick up on some things! It’s also totally okay if things aren’t clicking just yet, but regardless of how you may be feeling, I will always be happy to work with you if you have any specific questions as you move forward on your coding journey! Hooray!!!
 
 ![](images/chatgpt.jpeg)
 
