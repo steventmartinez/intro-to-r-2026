@@ -130,7 +130,7 @@ Lastly, although you only need to install a package once, you have to load in an
 Let's try installing and loading in a few package for practice. Let's install and load the following packages in R: **tidyverse, report, lme4, and ggplot2**
 
 ## Exercise: Installing and Loading Packages
-```{r exercise: installing and loading packages, code="\n\n\n\n", results=F}
+```{r exercise: installing and loading packages, code="'\n\n\n\n'", results=F}
 
 
   
