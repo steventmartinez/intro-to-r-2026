@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Coding: R"
+title: "Introduction to R (2026)"
 author: 
   - name: "**Content Creator: Steven Martinez & Helen Schmidt**"
   - name: "**Instructor: Steven Martinez**"
