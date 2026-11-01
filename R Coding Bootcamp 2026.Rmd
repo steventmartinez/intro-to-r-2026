@@ -26,8 +26,10 @@ editor_options:
     wrap: 72
 ---
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
+knitr::opts_chunk$set(error = TRUE, warning = FALSE, message = FALSE)
 knitr::opts_knit$set(root.dir = here::here())
+
 ```
 
 
@@ -986,40 +988,28 @@ You don't have to change anything in this code -- just run it as it is! All this
 ##   groupvars: a vector containing names of columns that contain grouping variables
 ##   na.rm: a boolean that indicates whether to ignore NA's
 ##   conf.interval: the percent range of the confidence interval (default is 95%)
-summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
-                      conf.interval=.95, .drop=TRUE) {
-    library(plyr)
-
-    # New version of length which can handle NA's: if na.rm==T, don't count them
-    length2 <- function (x, na.rm=FALSE) {
-        if (na.rm) sum(!is.na(x))
-        else       length(x)
-    }
-
-    # This does the summary. For each group's data frame, return a vector with
-    # N, mean, and sd
-    datac <- ddply(data, groupvars, .drop=.drop,
-      .fun = function(xx, col) {
-        c(N    = length2(xx[[col]], na.rm=na.rm),
-          mean = mean   (xx[[col]], na.rm=na.rm),
-          sd   = sd     (xx[[col]], na.rm=na.rm)
-        )
-      },
-      measurevar
-    )
-
-    # Rename the "mean" column    
-    datac <- plyr::rename(datac, c("mean" = measurevar))
-
-    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
-
-    # Confidence interval multiplier for standard error
-    # Calculate t-statistic for confidence interval: 
-    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
-    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
-    datac$ci <- datac$se * ciMult
-
-    return(datac)
+## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
+##   data: a data frame.
+##   measurevar: the name of a column that contains the variable to be summarized
+##   groupvars: a vector containing names of columns that contain grouping variables
+##   na.rm: a boolean that indicates whether to ignore NA's
+##   conf.interval: the percent range of the confidence interval (default is 95%)
+summarySE <- function(data = NULL, measurevar, groupvars = NULL,
+                      na.rm = FALSE, conf.interval = .95) {
+  data %>%
+    group_by(across(all_of(groupvars))) %>%             # group by your grouping variable(s)
+    summarise(
+      N    = if (na.rm) sum(!is.na(.data[[measurevar]])) else n(),  # sample size
+      mean = mean(.data[[measurevar]], na.rm = na.rm),              # mean
+      sd   = sd(.data[[measurevar]], na.rm = na.rm),                # standard deviation
+      .groups = "drop"
+    ) %>%
+    rename(!!measurevar := mean) %>%                    # rename "mean" to your variable's name
+    mutate(
+      se = sd / sqrt(N),                                # standard error of the mean
+      ci = se * qt(conf.interval / 2 + .5, N - 1)       # confidence interval
+    ) %>%
+    as.data.frame()
 }
 
 
@@ -1137,7 +1127,6 @@ Congrats!!! You made it through an R workshop!! Hopefully you feel like you’re
 ![](images/chatgpt.jpeg)
 
 ```{r Intro Video, echo = FALSE}
-library(plyr)
 vembedr::embed_url("https://www.youtube.com/watch?v=HluANRwPyNo")
 ```
 **What people think coding is versus what it actually is**
