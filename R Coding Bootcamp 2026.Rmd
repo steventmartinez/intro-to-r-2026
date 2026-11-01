@@ -42,7 +42,7 @@ By the end of this workshop series, our hope is that you will feel comfortable e
 
 # Are you ready to start learning R?
 
-![](images/Learning_R.jpeg){width=50%}
+![](images/Learning_R.jpeg){width=60%}
 
 
 # Intro to RMarkdown
@@ -79,13 +79,13 @@ That’s because a typical script will interpret any text as a command, unless t
 
 Here's a quick overview of the different R Markdown buttons:
 
-**To minimize entire chunks and their output**, press the **Fold code** [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
+**To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
 
-**To run specific R markdown chunks**, press the **Run Current Chunk** button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
+**To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
 
-**To run all code up to the current R Markdown chunk**, press the **Run All Chunks Above** [![Run All Chunks Command](images/ChunkRunAll.png)]. 
+**To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)]. 
 
-**To toggle the settings for a given R Markdown chunk**, press the **Modify Chunk Options** button [![Settings Command](images/ChunkSettings.png)].
+**To toggle the settings for a given R Markdown chunk**, press the "Modify Chunk Options" button [![Settings Command](images/ChunkSettings.png)].
 
 
   
@@ -182,7 +182,7 @@ Here's an example of a file path: **"/Users/steven/Desktop/intro-to-r-2026"**
 
 And here's a visualization of what that file path looks like on a computer:
 
-![An example of a file path](images/FilePath_Visualization.png)
+![](images/FilePath_Visualization.png)
 
 Each part of the file path is a separate folder that we are traversing through.
 
@@ -207,7 +207,7 @@ As you can see, my working directory is currently set at: **"/Users/steven/Deskt
 The output probably doesn't make much sense to anyone because this working directory file path is specific to my computer! Each of our working directory file paths will be specific to the computer we are using.
 
 
-## Specifying your Working Directory
+## Setting your Working Directory
 
 In order to work with the palmerpenguins datasets, we need to tell R where the files are located. We can create a new object that stores a specific file path to make this process easier. File paths will differ based on whether you are using a Windows versus a Mac. 
 

@@ -23,7 +23,7 @@ body{
     /* background-image: radial-gradient(#8A8D8F, #ffffff);
     background-clip: text;
     -webkit-background-clip: text; */
-    background-color: #9D2235;
+    background-color: #4B9CD3;
     border-radius: 5px 20px 20px;
     opacity: 1.0;
     padding-top: 1em;
@@ -44,7 +44,7 @@ body{
     font-size: 23pt;
     font-weight: bold;
     color: 	 #FFFFFF;
-    background-color: #9D2235;
+    background-color: #4B9CD3;
     opacity: .90;
     padding-top: .25em;
     padding-left: .5em;
@@ -95,7 +95,7 @@ body{
   }
 
   code {
-    color: #9D2235;
+    color: #4B9CD3;
     ;
   }
   
@@ -128,7 +128,7 @@ body{
     float:right;
     width:20%;
     font-size: 9.5pt;
-    border: 12.5px solid #9D2235;
+    border: 12.5px solid #4B9CD3;
     border-radius: 15px;
     background: white;
     padding: .5em;
