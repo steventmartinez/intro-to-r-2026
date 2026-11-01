@@ -16,8 +16,8 @@ By the end of this workshop series, our hope is that you will feel comfortable e
 2. **Download RStudio** (which allows us to work with R, but is a different program from R)  
          Windows or Mac: https://docs.posit.co/ide/user/download.html
 
-3. **Download the workshop materials on this page!** <br>
-         Press the green **Code** button and download the ZIP folder. This is the folder containing all the files we will be working with for this workshop.
+3. **Download the workshop materials at the top of this page!** <br>
+         Press the green **Code** button and download the ZIP folder at the top of this page. This is the folder containing all the files we will be working with for this workshop.
 
 ![](images/CodeButton.png)
 
