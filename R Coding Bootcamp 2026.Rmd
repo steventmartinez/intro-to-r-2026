@@ -39,7 +39,13 @@ This workshop will provide an introduction to the R programming language!
 
 Many psychology and neuroscience researchers use R to clean data, visualize data, and carry out statistical analyses.
 
-By the end of this workshop series, we hope that you will feel comfortable enough to work independently in R!
+By the end of this workshop series, we hope that you will feel comfortable enough to work independently in R.
+
+This is the basic workflow that most R scripts work through, and it's the framework that we'll use today during the workshop. Hooray!
+
+
+![](images/flowchart.png)
+
 
 
 # Are you ready to start learning R?
@@ -985,12 +991,6 @@ You don't have to change anything in this code -- just run it as it is! All this
 ## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
 ##   data: a data frame.
 ##   measurevar: the name of a column that contains the variable to be summariezed
-##   groupvars: a vector containing names of columns that contain grouping variables
-##   na.rm: a boolean that indicates whether to ignore NA's
-##   conf.interval: the percent range of the confidence interval (default is 95%)
-## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
-##   data: a data frame.
-##   measurevar: the name of a column that contains the variable to be summarized
 ##   groupvars: a vector containing names of columns that contain grouping variables
 ##   na.rm: a boolean that indicates whether to ignore NA's
 ##   conf.interval: the percent range of the confidence interval (default is 95%)
