@@ -79,13 +79,10 @@ That’s because a typical script will interpret any text as a command, unless t
 
 Here's a quick overview of the different R Markdown buttons:
 
-**To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
-
-**To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
-
-**To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)]. 
-
-**To toggle the settings for a given R Markdown chunk**, press the "Modify Chunk Options" button [![Settings Command](images/ChunkSettings.png)].
+**-To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
+**-To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
+**-To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)]. 
+**-To toggle the settings for a given R Markdown chunk**, press the "Modify Chunk Options" button [![Settings Command](images/ChunkSettings.png)].
 
 
   
@@ -162,7 +159,7 @@ The palmerpenguins data contains two datasets:
 
 ![](images/palmerpenguins_1.png){width=30%}
 ![](images/palmerpenguins_2.png){width=50%}
-
+<br>
 Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
 
 # Working Directories
@@ -192,10 +189,14 @@ A working directory refers to the specific file path on your computer where R (o
 
 Below we'll use the ```getwd()``` command to find out where where your current working directory is.
 
-```{r getwd(), eval=T}
+```{r getwd(), eval=FALSE}
 
 getwd() #get your current working directory
 
+```
+
+```{r getwd output, echo=FALSE}
+"/Users/steven/Desktop/intro-to-r-2026"
 ```
 
 As you can see, my working directory is currently set at: **"/Users/steven/Desktop/intro-to-r-2026"**
