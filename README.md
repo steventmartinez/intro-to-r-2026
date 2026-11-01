@@ -10,7 +10,7 @@ By the end of this workshop series, our hope is that you will feel comfortable e
 
 ## To-do before the tutorial
 1. **Download R** <br>
-         Windows: https://cran.r-project.org/bin/windows/base/
+         Windows: https://cran.r-project.org/bin/windows/base/ <br>
          Mac: https://cran.r-project.org/bin/macosx/         
          
 2. **Download RStudio** (which allows us to work with R, but is a different program from R)  
