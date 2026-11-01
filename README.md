@@ -13,7 +13,7 @@ By the end of this workshop series, our hope is that you will feel comfortable e
          Windows: https://cran.r-project.org/bin/windows/base/
          Mac: https://cran.r-project.org/bin/macosx/         
          
-2. **Download RStudio** (which allows us to work with R, but is a different program from R) <br>  
+2. **Download RStudio** (which allows us to work with R, but is a different program from R)  
          Windows or Mac: https://docs.posit.co/ide/user/download.html
 
 3. **Download the workshop materials on this page!** <br>
