@@ -159,12 +159,11 @@ The palmerpenguins data contains two datasets:
 
 2) The **raw** dataset, which contains additional information about the penguins.
 
-Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
-
 
 ![](images/palmerpenguins_1.png){width=30%}
 ![](images/palmerpenguins_2.png){width=50%}
 
+Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
 
 # Working Directories
 
