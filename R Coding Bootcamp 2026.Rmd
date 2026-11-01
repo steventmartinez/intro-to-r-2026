@@ -31,6 +31,15 @@ knitr::opts_knit$set(root.dir = here::here())
 ```
 
 
+# Introduction
+
+This workshop will provide an introduction to the R programming language! 
+
+Many psychology and neuroscience researchers use R to clean data, visualize data, and carry out statistical analyses.
+
+By the end of this workshop series, we hope that you will feel comfortable enough to work independently in R!
+
+
 # Are you ready to start learning R?
 
 ![](images/Learning_R.jpeg){width=60%}
