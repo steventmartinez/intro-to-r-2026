@@ -44,7 +44,7 @@ By the end of this workshop series, we hope that you will feel comfortable enoug
 This is the basic workflow that most R scripts work through, and it's the framework that we'll use today during the workshop. Hooray!
 
 
-![](images/flowchart.png){width=15% height=200px}
+![](images/flowchart_nobg.png){width=20% height=350px}
 
 
 
