@@ -1,30 +1,23 @@
-# Coding Outreach Group Bootcamp
-# R Tutorial
-12/17/2024  
-
-__**Content Creators:**__ Steven Martinez & Helen Schmidt
-
-### [Full Workshop Recording](https://youtu.be/q_l_O7L9OeY)
+# Intro to R (Winston Center edition)
+11/12/2026  
 
 ## Description
-This workshop will provide an introduction to the programming language commonly referred to as R! 
+This workshop will provide an introduction to the R programming language! 
 
-R is a popular programming language that many researchers use for organizing data, visualizing data, and carrying out statistical analyses.
+Many psychology researchers use R for cleaning data, visualizing data, and carrying out statistical analyses.
 
 By the end of this workshop series, our hope is that you will feel comfortable enough to work independently in R!
 
 ## To-do before the tutorial
 1. **Download R** <br>
-         Windows: https://cran.r-project.org/bin/windows/base/R-4.2.1-win.exe  
+         Windows: https://cran.r-project.org/bin/windows/base/
          Mac: https://cran.r-project.org/bin/macosx/         
-         Linux: https://cran.r-project.org/
          
 2. **Download RStudio** (which allows us to work with R, but is a different program from R)  
-         Windows: https://download1.rstudio.org/desktop/windows/RStudio-2022.07.1-554.exe  
-         Mac: https://download1.rstudio.org/desktop/macos/RStudio-2022.07.1-554.dmg  
-         Linux: https://download1.rstudio.org/desktop/jammy/amd64/rstudio-2022.07.1-554-amd64.deb   
+         Windows or Mac: https://docs.posit.co/ide/user/download.html
 
-3. **Download the "intro-to-coding-2025"" folder from the TU-COG Github page (https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2025)** by pressing the green **Code** button and downloading the ZIP folder. This is the folder containing all the files we will be working with for the purposes of this workshop.
+3. **Download the workshop materials on this page!
+         Press the green **Code** button and download the ZIP folder. This is the folder containing all the files we will be working with for this workshop.
 
 ![](images/CodeButton.png)
 
