@@ -3,7 +3,7 @@ title: "Introduction to Coding: R"
 author: 
   - name: "**Content Creator: Steven Martinez & Helen Schmidt**"
   - name: "**Instructor: Steven Martinez**"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "November 12, 2026"
 output: 
   html_document: 
     toc: true
@@ -284,7 +284,7 @@ We can also view the penguins data frame by using the View() command.
 
 If we want to look at the first few rows of the penguins data frame, we can use the head() command.
 
-```{r, head and View functions}
+```{r, head and View functions, eval=2}
 View(penguins) #will open up the full data frame like you would in Excel
 head(penguins) #will show you a subset of rows within the Data Frame
 ```
@@ -804,7 +804,7 @@ We can observe the results of our t-test by printing the **model1** data object 
 
 Let's use the ```report()``` function from the report library to help with our interpretation of the t-test results.
 
-```{r, report t-test}
+```{r, report t-test, warning=FALSE}
 
 report(model1)
 
@@ -1143,5 +1143,5 @@ Congrats!!! You made it through an R workshop!! Hopefully you feel like you’re
 library(plyr)
 vembedr::embed_url("https://www.youtube.com/watch?v=HluANRwPyNo")
 ```
-[**What people think coding is versus what it actually is**]
+**What people think coding is versus what it actually is**
 
