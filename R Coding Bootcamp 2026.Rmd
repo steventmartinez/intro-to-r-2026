@@ -31,15 +31,6 @@ knitr::opts_knit$set(root.dir = here::here())
 ```
 
 
-# Introduction
-
-This workshop will provide an introduction to the programming language commonly referred to as R! 
-
-R is a popular programming language that many researchers use for organizing data, visualizing data, and carrying out statistical analyses.
-
-By the end of this workshop series, our hope is that you will feel comfortable enough to work independently in R!
-
-
 # Are you ready to start learning R?
 
 ![](images/Learning_R.jpeg){width=60%}
