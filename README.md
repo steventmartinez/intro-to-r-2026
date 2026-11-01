@@ -31,4 +31,4 @@ By the end of this workshop series, our hope is that you will feel comfortable e
 
 
 ## Workshop Materials
-- [Notebook Viewer](https://tu-coding-outreach-group.github.io/intro-to-coding-2025/R/index.html)
+- [Notebook Viewer](https://steventmartinez.github.io/intro-to-coding-2026/index.html)
