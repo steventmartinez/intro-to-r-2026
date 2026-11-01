@@ -87,9 +87,9 @@ That’s because a typical script will interpret any text as a command, unless t
 
 Here's a quick overview of the different R Markdown buttons:
 
-**-To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window. 
-**-To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.
-**-To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)]. 
+**-To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window.<br>
+**-To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.<br>
+**-To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)].<br> 
 **-To toggle the settings for a given R Markdown chunk**, press the "Modify Chunk Options" button [![Settings Command](images/ChunkSettings.png)].
 
 
