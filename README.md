@@ -1,28 +1,41 @@
-# Intro to Coding Bootcamp 2025
-## Coding Outreach Group (COG)
+# Coding Outreach Group Bootcamp
+# R Tutorial
+12/17/2024  
 
-This set of tutorials is intended for complete beginners to coding. If you have never written a line of code in your life, these tutorials will help you get comfortable coding in two popular programming languages: R and Python. These two languages are often used by psychology researchers, and these tutorials are catered to that field. However, the concepts covered are applicable in any field that does coding. Much of the material covered in the tutorials is borrowed from some already great, and more in-depth tutorials. A list of these is available [here](https://github.com/TU-Coding-Outreach-Group/Tutorials/blob/master/index.md).
+__**Content Creators:**__ Steven Martinez & Helen Schmidt
 
-## Agenda
-| Date        | Workshop                             | Lead Instructor |
-| :-----------: |:------------------------------------:| :-----------:|
-| 01/30/25    | [R](https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2025/tree/main/R) | Steven Martinez |
-| 01/31/25    | [Python](https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2025/tree/main/python) | Helen Schmidt |
+### [Full Workshop Recording](https://youtu.be/q_l_O7L9OeY)
+
+## Description
+This workshop will provide an introduction to the programming language commonly referred to as R! 
+
+R is a popular programming language that many researchers use for organizing data, visualizing data, and carrying out statistical analyses.
+
+By the end of this workshop series, our hope is that you will feel comfortable enough to work independently in R!
+
+## To-do before the tutorial
+1. **Download R** <br>
+         Windows: https://cran.r-project.org/bin/windows/base/R-4.2.1-win.exe  
+         Mac: https://cran.r-project.org/bin/macosx/         
+         Linux: https://cran.r-project.org/
+         
+2. **Download RStudio** (which allows us to work with R, but is a different program from R)  
+         Windows: https://download1.rstudio.org/desktop/windows/RStudio-2022.07.1-554.exe  
+         Mac: https://download1.rstudio.org/desktop/macos/RStudio-2022.07.1-554.dmg  
+         Linux: https://download1.rstudio.org/desktop/jammy/amd64/rstudio-2022.07.1-554-amd64.deb   
+
+3. **Download the "intro-to-coding-2025"" folder from the TU-COG Github page (https://github.com/TU-Coding-Outreach-Group/intro-to-coding-2025)** by pressing the green **Code** button and downloading the ZIP folder. This is the folder containing all the files we will be working with for the purposes of this workshop.
+
+![](images/CodeButton.png)
 
 
-## Getting Started
-Each tutorial will list the necessary prerequisites in their respective README.md files, but here is some software we recommend you install before the workshops. 
-- A text editor you're comfortable with. Visual Studio Code is a great text editor. ([VSCode](https://code.visualstudio.com/))
-- [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
-- Anaconda Navigator, available to download here: https://www.anaconda.com/products/navigator
+## Tutorial objectives:
+- Become familiar with RStudio and Rmarkdown (and more generally notebook style coding)
+- Understand how to set a working directory and navigate file paths
+- Learn how to load and clean data
+- Conduct statistical analyses
+- Learn how to visualize data
 
 
-## Meet Your TAs
-
-| [Helen Schmidt](https://hschmidt12.github.io/) | [Steven Martinez](https://www.adaptivememorylab.com/people#:~:text=Daemon/Familiar%3A%20Giraffe-,Steven%20Martinez,-Graduate%20Student) |
-| :------------: | :----------:
-| <img src="misc/images/helen-headshot.jpg"  width="200" height="150" /> | <img src="misc/images/steven-headshot.jpg"  width="170" height="150" /> |
-
-
-## Acknowledgements
-We would like to thank Billy Mitchell and Katie Jobson, the Psychology and Neuroscience Department at Temple University, and Dr. Peter Marshall for their support. 
+## Workshop Materials
+- [Notebook Viewer](https://tu-coding-outreach-group.github.io/intro-to-coding-2025/R/index.html)
