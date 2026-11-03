@@ -179,7 +179,7 @@ Before we start talking about "working directories", let's quickly unpack what a
 
 "File paths" is just a fancy way to refer to the folders and subfolders that exist on someone's computer. Understanding how to navigate file paths is really important for being able to access specific files that you want to work with!
 
-Here's an example of a file path: **"/Users/steven/Desktop/intro-to-r-2026"**
+Here's an example of a file path: **"/Users/steven/Desktop/intro-to-r-2026-main"**
 
 And here's a visualization of what that file path looks like on a computer:
 
@@ -204,10 +204,10 @@ getwd() #get your current working directory
 ```
 
 ```{r getwd output, echo=FALSE}
-"/Users/steven/Desktop/intro-to-r-2026"
+"/Users/steven/Desktop/intro-to-r-2026-main"
 ```
 
-As you can see, my working directory is currently set at: **"/Users/steven/Desktop/intro-to-r-2026"**
+As you can see, my working directory is currently set at: **"/Users/steven/Desktop/intro-to-r-2026-main"**
 
 The output probably doesn't make much sense to anyone because this working directory file path is specific to my computer! Each of our working directory file paths will be specific to the computer we are using.
 
@@ -238,10 +238,10 @@ Let's store this file path in an object called "Path".
 ```{r Setting Working Directory, eval=FALSE,include=TRUE, message=FALSE, warning=FALSE, error=FALSE}
 
 # For Windows
-Path <- "C:/Users/steven/Desktop/intro-to-r-2026/data/"
+Path <- "C:/Users/steven/Desktop/intro-to-r-2026-main/data/"
 
 # For Mac
-Path <- "/Users/steven/Desktop/intro-to-r-2026/data/"
+Path <- "/Users/steven/Desktop/intro-to-r-2026-main/data/"
 
 ```
 
@@ -249,7 +249,7 @@ Path <- "/Users/steven/Desktop/intro-to-r-2026/data/"
 Path <- here::here("data/")
 ``` 
 
-This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
+This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026-main/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
 
 We'll next use this **Path** object to set our working directory using the ```setwd()``` command. The ```setwd()``` command tells R where to look for files on our computer.
 
@@ -275,19 +275,23 @@ In the most basic sense, we can load our palmer-penguins_curated.csv data file u
 
 The ```read.csv()``` command loads in the data. If done correctly, we should see our R **Environment** populate with a dataframe labeled **penguins**. 
 
+
 ```{r loading in data }
 penguins <- read.csv(file = "palmer-penguins_curated.csv") #Load in the palmer-penguins_curated CSV file and store it in a data frame called "penguins"
 ```
 
-  
+
+IMPORTANT!!! This command ```read.csv(file = "palmer-penguins_curated.csv")``` is effectively the same as ```read.csv(file = "/Users/steven/Desktop/intro-to-r-2026-main/data/palmer-penguins_curated.csv")```
+
+
 ![**A visualization of the Environment Window.**](images/R_Environment.png)  
 <br>
 
 Since we're all using the same dataset, the number of observations and variables should be the same as in the picture above. Here, you can think of observations as "rows" and variables as "columns". If you click on **penguins** in the environment, it will open in a new tab of your **Source Window** (The same window you are likely writing script in) where you can view it. 
 
-We can also view the penguins data frame by using the View() command.
+We can also view the penguins data frame by using the ```View()``` command.
 
-If we want to look at the first few rows of the penguins data frame, we can use the head() command.
+If we want to look at the first few rows of the penguins data frame, we can use the ```head()``` command.
 
 ```{r, head and View functions, eval=2}
 View(penguins) #will open up the full data frame like you would in Excel
@@ -295,25 +299,28 @@ head(penguins) #will show you a subset of rows within the Data Frame
 ```
 
 
+Another helpful command is ```colnames()```, which prints an output of all the column names in a given data frame.
+
+
+```{r colnames }
+
+colnames(penguins) #print all the column names in a data frame
+
+```
+
 Amazing! Now that we can see the penguins dataset, let's get a better idea of what each column in the dataset represents:
 
-**sample_number** -- Represents the continuous numbering sequence for each sample where data was collected
-
-**species** -- The three types of penguin species
-
-**island** -- The three types of island
-
-**bill_length_mm** -- A continuous number denoting bill length in millimeters
-
-**bill_depth_mm** -- An integer denoting bill depth in millimeters
-
-**flipper_length_mm** -- An integer denoting flipper length in millimeters
-
-**body_mass_g** -- A continuous number denoting body mass in grams
-
-**sex** -- Sex of the penguin
-
-**year** -- Year when the study took place
+| Column | Description |
+|:-------|:------------|
+| **sample_number** | Represents the continuous numbering sequence for each sample where data was collected |
+| **species** | The three types of penguin species |
+| **island** | The three types of island |
+| **bill_length_mm** | A continuous number denoting bill length in millimeters |
+| **bill_depth_mm** | An integer denoting bill depth in millimeters |
+| **flipper_length_mm** | An integer denoting flipper length in millimeters |
+| **body_mass_g** | A continuous number denoting body mass in grams |
+| **sex** | Sex of the penguin |
+| **year** | Year when the study took place |
 
 ## Data types in R
 
@@ -329,10 +336,12 @@ glimpse(penguins)
 
 Here's a quick glossary for the common data types that appear in R:
 
-**dbl** references any number that reflects a continuous number and can include decimals. <br>
-**int** reflects integers, which only include whole numbers and do not include decimals. <br>
-**chr** reflects character, which includes string-based text. <br>
-**factor** reflects factor, which includes texts or numbers, but is typically used to reflect a category (Think "Low", "Medium", "High" for texts or "1", "2", "3", for rankings). <br>
+| Data type | What it means |
+|:----------|:--------------|
+| **dbl** | Double/numeric: any continuous number, which can include decimals |
+| **int** | Integer: whole numbers only, no decimals |
+| **chr** | Character: string-based text |
+| **fct** | Factor: text or numbers used to represent a category (think "Low", "Medium", "High" for text, or "1", "2", "3" for rankings) |
 
 Now that we've got a better understanding of what data can look like in R, let's start working with the data.
 
@@ -348,17 +357,17 @@ dataframe$column will print out all the rows in that specific column. Let's prin
 
 ```{r, index rows in column}
 
-penguins$species 
+penguins$species #print all the rows in the 'species' column
 
 ```
 
 What if we want to see a specific row? Let’s say row 2 within the **species** column? To reference a specific row in a given column, we can add brackets and the number of that row in the brackets.
 
-The code below will print out the second row in the species column. We can manually confirm this by opening up the penguins data frame and looking at the second row in the *species* column.
+The code below will print out the cell in the second row in the species column. We can manually confirm this by opening up the penguins data frame and looking at the cell in the second row in the *species* column.
 
 ```{r, index specific cell}
 
-penguins$species[2]
+penguins$species[2] #print the cell in the 2nd row of the 'species' column
 
 ```
 
@@ -368,9 +377,11 @@ By including the name of the data frame before the bracket notation, we can pull
 
 ```{r, indexing elements}
 
-penguins[1,] # print the first row across all 8 columns
-penguins[,2] # print all the rows for column 2
-penguins[1,2] # print the first row in column 2
+penguins[1,] #print the first row across all columns
+
+penguins[,2] #print all the rows for column 2
+
+penguins[1,2] #print the first row in column 2
 
 ```
 
