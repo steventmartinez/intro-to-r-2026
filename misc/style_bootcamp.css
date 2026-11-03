@@ -141,5 +141,10 @@ body{
     text-indent: inherit;
     padding-left: 2em;
     }
-  
+
+
+   table th {
+     background-color: #4B9CD3;
+     color: #FFFFFF;
+   }  
   

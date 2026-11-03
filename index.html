@@ -2786,7 +2786,10 @@ box-shadow: 4px 4px 5px #888;
 text-indent: inherit;
 padding-left: 2em;
 }
-</style>
+table th {
+background-color: #4B9CD3;
+color: #FFFFFF;
+} </style>
 
 
 
@@ -3285,15 +3288,16 @@ millimeters</td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>bill_depth_mm</strong></td>
-<td align="left">An integer denoting bill depth in millimeters</td>
+<td align="left">An continuous number denoting bill depth in
+millimeters</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>flipper_length_mm</strong></td>
-<td align="left">An integer denoting flipper length in millimeters</td>
+<td align="left">An integer number flipper length in millimeters</td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>body_mass_g</strong></td>
-<td align="left">A continuous number denoting body mass in grams</td>
+<td align="left">An integer denoting body mass in grams</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>sex</strong></td>
@@ -3628,7 +3632,7 @@ frame, you can see that all the rows in the ‘species’ column represent
 represent <strong>Biscoe</strong>.</p>
 <p>As you can see, leveraging the OR ( <strong>|</strong> ) and AND (
 <strong>&amp;</strong> ) operators in conjunction with the
-`<code>filter()</code> function can be especially powerful.</p>
+<code>filter()</code> function can be especially powerful.</p>
 </div>
 <div id="exercise-subsetting-data" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Exercise: Subsetting

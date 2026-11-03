@@ -316,9 +316,9 @@ Amazing! Now that we can see the penguins dataset, let's get a better idea of wh
 | **species** | The three types of penguin species |
 | **island** | The three types of island |
 | **bill_length_mm** | A continuous number denoting bill length in millimeters |
-| **bill_depth_mm** | An integer denoting bill depth in millimeters |
-| **flipper_length_mm** | An integer denoting flipper length in millimeters |
-| **body_mass_g** | A continuous number denoting body mass in grams |
+| **bill_depth_mm** | An continuous number denoting bill depth in millimeters |
+| **flipper_length_mm** | An integer number flipper length in millimeters |
+| **body_mass_g** | An integer denoting body mass in grams |
 | **sex** | Sex of the penguin |
 | **year** | Year when the study took place |
 
