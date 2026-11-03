@@ -466,7 +466,7 @@ penguins_adelie_biscoe <- penguins %>%
 
 If you open up the **penguins_adelie_biscoe** data frame, you can see that all the rows in the 'species' column represent **Adelie** and all the rows in the 'island' column represent **Biscoe**. 
 
-As you can see, leveraging the OR ( **|** ) and AND ( **&** ) operators in conjunction with the ```filter()`` function can be especially powerful.
+As you can see, leveraging the OR ( **|** ) and AND ( **&** ) operators in conjunction with the ```filter()``` function can be especially powerful.
 
 
 ## Exercise: Subsetting data
