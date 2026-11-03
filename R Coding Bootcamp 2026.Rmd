@@ -361,27 +361,20 @@ penguins$species #print all the rows in the 'species' column
 
 ```
 
-What if we want to see a specific row? Let’s say row 2 within the **species** column? To reference a specific row in a given column, we can add brackets and the number of that row in the brackets.
 
-The code below will print out the cell in the second row in the species column. We can manually confirm this by opening up the penguins data frame and looking at the cell in the second row in the *species* column.
+Next, we will talk about indexing. Indexing refers to accessing specific rows or specific columns.
 
-```{r, index specific cell}
+For instance, knowing that the 'species' column is the first column, I can use bracket notation. Bracket notation is super helpful once you understand its structure. It helps me to think of it as [rows, columns]. Any number that appears before the comma will access rows, and any number that appears after the comma will access columns.
 
-penguins$species[2] #print the cell in the 2nd row of the 'species' column
-
-```
-
-However, we can also index the column using it’s relative position. Knowing that the species column is the first column, I can use bracket notation. Bracket notation is super helpful once you understand its structure. It helps me to think of it as [rows, columns]. Any number that appears before the comma will access rows, and any number that appears after the comma will access columns.
-
-By including the name of the data frame before the bracket notation, we can pull certain rows and columns from that data frame
+By including the name of the data frame before the bracket notation, we can pull certain rows and columns from that data frame.
 
 ```{r, indexing elements}
 
 penguins[1,] #print the first row across all columns
 
-penguins[,2] #print all the rows for column 2
+penguins[,2] #print all the rows in the second column
 
-penguins[1,2] #print the first row in column 2
+penguins[1,2] #print the first row in the second column
 
 ```
 
@@ -389,17 +382,25 @@ Now that we know how to access rows and columns, let's talk about subsetting!
 
 ## Introduction to Subsetting
 
-Subsetting is a technique for filtering rows or columns in a given data frame in order to remove any rows/columns you are not interested in using.
+Subsetting is a technique for filtering rows or columns in a given data frame, usually to filter out any rows/columns you are not interested in using.
 
 ## Subsetting rows 
 
 We can subset rows and columns, but let's start off with focusing on how we can subset specific rows.
 
-We know that there are three species of penguins in this dataset: Adelie, Gentoo, and Chinstrap.
+We know that there are three penguin species in this dataset: Adelie, Gentoo, and Chinstrap.
 
 Let's say we only wanted to focus on penguins from the Adelie species.
 
 Thankfully, the filter() function from the **tidyverse** library makes subsetting a bit easier. Here, we will use the ```filter()``` function to subset the rows that represent penguins from the Adelie species and store these rows in a new data frame called "penguins_adelie".
+
+Let's break down 2 operators here that are particularly important.
+
+**%>%** refers to piping, which lets you pass the result of one function directly as the input to the next function. Here, all we are doing is feeding in the penguins data frame into the ```filter()``` function.
+
+Notice the two equals signs (*==*) in this part of the code: ```filter(species == "Adelie")```
+
+When two value operators (=, >, <, !) are placed next to each other in R, and many other languages, we aren’t assigning a value to an object; we are comparing the values between two different objects. In this instance, using two equals signs, if the two values are equal, it would produce a TRUE value; if not, then a FALSE. This variable which can only take the value of either TRUE or FALSE is called a boolean. When we tell R to compare the value on the right with this specific column, what it is mechanically doing is iterating through each row within this column, comparing the column value, and determining whether the condition is TRUE or FALSE.
 
 ```{r, subsetting rows}
 
@@ -410,14 +411,6 @@ penguins_adelie <- penguins %>%
 
 If you open up the penguins_adelie dataframe using ```View(penguins_adelie)``` or manually clicking on the new data object in the R Environment window, you should see that all the rows in the **species** column of this data frame reflect the **Adelie** species.
  
-Let's break down 2 operators here that are particularly important.
-
-*%>%* refers to piping, which lets you pass the result of one function directly as the input to the next function. Here, all we are doing is feeding in the penguins data frame into the filter() function.
-
-Notice the two equals signs (*==*) in this part of the code: ```filter(species == "Adelie")```
-
-When two value operators (=, >, <, !) are placed next to each other in R, and many other languages, we aren’t assigning a value to an object; we are comparing the values between two different objects. In this instance, using two equals signs, if the two values are equal, it would produce a TRUE value; if not, then a FALSE. This variable which can only take the value of either TRUE or FALSE is called a boolean. When we tell R to compare the value on the right with this specific column, what it is mechanically doing is iterating through each row within this column, comparing the column value, and determining whether the condition is TRUE or FALSE.
-
 We can use this same strategy, piping (%>%) and value operators (==), to subset columns as well.
 
 
@@ -425,7 +418,7 @@ We can use this same strategy, piping (%>%) and value operators (==), to subset 
 
 Let's say we were only interested in examining bill length, and not as interested in examining bill depth, flipper length, body mass, sex, and year.
 
-We can use the select() function from the tidyverse library to keep the sample_number, species, island, and bill_length_mm columns, while also removing the columns we are not interested in (bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year).
+We can use the ```select()``` function from the tidyverse library to keep certain columns (sample_number, species, island, and bill_length_mm), while also removing the columns we are not interested in (bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year).
 
 Here, we will use the ```select()``` function to assign the columns of interest (sample_number, species, island, bill_length_mm) into a new data frame called "penguins_bill_length".
 
@@ -436,14 +429,14 @@ penguins_bill_length <- penguins %>%
 
 ```
 
-If you open up the penguins_bill_length dataframe using ```View(penguins_bill_length)``` or manually clicking on penguins_bill_length in the R Environment window, you should see that only the columns we wanted to keep (sample_number, species, island, bill_length_mm).
+If you open up the penguins_bill_length dataframe using ```View(penguins_bill_length)``` or by manually clicking on penguins_bill_length in the R Environment window, you should only see the columns that we wanted to keep (sample_number, species, island, bill_length_mm).
 
 
 ## Subsetting based on multiple conditions
 
 What if, rather than subsetting based on one condition (i.e., subset all rows that represent penguins from the Adelie species), we wanted to subset based on multiple conditions? 
 
-We can take advantage of the OR ( **|** ) operator using the filter() function.
+We can take advantage of the OR ( **|** ) operator using the ```filter()``` function.
 
 Let's say we were only interested in examining Adelie or Gentoo penguins, but not Chinstrap penguins.
 
@@ -456,13 +449,13 @@ penguins_adelie_gentoo <- penguins %>%
 
 ```
 
-If you open up the **penguins_adelie_gentoo** data frame, you can see that all the rows in the **species** column represent **Adelie** or **Gentoo** penguins, but not **Chinstrap** penguins
+If you open up the **penguins_adelie_gentoo** data frame, you can see that all the rows in the 'species' column represent **Adelie** or **Gentoo** penguins, but not Chinstrap penguins
 
-We can also take advantage of the AND ( **&** ) operator using the filter() function.
+We can also take advantage of the AND ( **&** ) operator using the ```filter()``` function.
 
 Let's say we were only interested in examining penguins from the Adelie species AND penguins that lived on Biscoe island.
 
-We can use the **AND** operator to tell R to subset all rows in the species column that are equal to "Adelie" AND all rows in the island column that are equal to "Biscoe" and store these rows in a new data frame called "penguins_adelie_biscoe".
+We can use the **AND** operator to tell R to subset all rows in the species column that are equal to **Adelie** AND all rows in the island column that are equal to **Biscoe** and store these rows in a new data frame called "penguins_adelie_biscoe".
 
 ```{r, AND operator}
 
@@ -471,16 +464,16 @@ penguins_adelie_biscoe <- penguins %>%
 
 ```
 
-If you open up the **penguins_adelie_biscoe** data frame, you can see that all the rows in the **species** column represent **Adelie** and all the rows in the **island** column represent **Biscoe**. 
+If you open up the **penguins_adelie_biscoe** data frame, you can see that all the rows in the 'species' column represent **Adelie** and all the rows in the 'island' column represent **Biscoe**. 
 
 As you can see, leveraging the OR ( **|** ) and AND ( **&** ) operators in conjunction with the ```filter()`` function can be especially powerful.
 
 
 ## Exercise: Subsetting data
 
-Let's try an exercise where we have to subset data!
+Let's try an exercise where we subset data!
 
-**1)** Create a new data frame called "penguin_chinstrap" and subset all rows in the species column that represent penguins from the *Chinstrap* species.
+**1)** Create a new data frame called "penguin_chinstrap" and subset all rows in the 'species' column that represent penguins from the **Chinstrap** species. Feel free to copy and paste from above, and tweak as needed in order to succesfully subset!
 
 ```{r subsetting exercise, code="'\n\n\n\n'", results=F}
 

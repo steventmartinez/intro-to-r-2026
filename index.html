@@ -3444,31 +3444,22 @@ Let’s print out all the rows in the <strong>species</strong> column.</p>
 ## [331] &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot;
 ## [337] &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot;
 ## [343] &quot;Chinstrap&quot; &quot;Chinstrap&quot;</code></pre>
-<p>What if we want to see a specific row? Let’s say row 2 within the
-<strong>species</strong> column? To reference a specific row in a given
-column, we can add brackets and the number of that row in the
-brackets.</p>
-<p>The code below will print out the cell in the second row in the
-species column. We can manually confirm this by opening up the penguins
-data frame and looking at the cell in the second row in the
-<em>species</em> column.</p>
-<pre class="r"><code>penguins$species[2] #print the cell in the 2nd row of the &#39;species&#39; column</code></pre>
-<pre><code>## [1] &quot;Adelie&quot;</code></pre>
-<p>However, we can also index the column using it’s relative position.
-Knowing that the species column is the first column, I can use bracket
-notation. Bracket notation is super helpful once you understand its
-structure. It helps me to think of it as [rows, columns]. Any number
-that appears before the comma will access rows, and any number that
-appears after the comma will access columns.</p>
+<p>Next, we will talk about indexing. Indexing refers to accessing
+specific rows or specific columns.</p>
+<p>For instance, knowing that the ‘species’ column is the first column,
+I can use bracket notation. Bracket notation is super helpful once you
+understand its structure. It helps me to think of it as [rows, columns].
+Any number that appears before the comma will access rows, and any
+number that appears after the comma will access columns.</p>
 <p>By including the name of the data frame before the bracket notation,
-we can pull certain rows and columns from that data frame</p>
+we can pull certain rows and columns from that data frame.</p>
 <pre class="r"><code>penguins[1,] #print the first row across all columns</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sample_number"],"name":[1],"type":["int"],"align":["right"]},{"label":["species"],"name":[2],"type":["chr"],"align":["left"]},{"label":["island"],"name":[3],"type":["chr"],"align":["left"]},{"label":["bill_length_mm"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bill_depth_mm"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["flipper_length_mm"],"name":[6],"type":["int"],"align":["right"]},{"label":["body_mass_g"],"name":[7],"type":["int"],"align":["right"]},{"label":["sex"],"name":[8],"type":["chr"],"align":["left"]},{"label":["year"],"name":[9],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"Adelie","3":"Torgersen","4":"39.1","5":"18.7","6":"181","7":"3750","8":"male","9":"2007","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>penguins[,2] #print all the rows for column 2</code></pre>
+<pre class="r"><code>penguins[,2] #print all the rows in the second column</code></pre>
 <pre><code>##   [1] &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;   
 ##   [7] &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;   
 ##  [13] &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;    &quot;Adelie&quot;   
@@ -3527,7 +3518,7 @@ we can pull certain rows and columns from that data frame</p>
 ## [331] &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot;
 ## [337] &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot; &quot;Chinstrap&quot;
 ## [343] &quot;Chinstrap&quot; &quot;Chinstrap&quot;</code></pre>
-<pre class="r"><code>penguins[1,2] #print the first row in column 2</code></pre>
+<pre class="r"><code>penguins[1,2] #print the first row in the second column</code></pre>
 <pre><code>## [1] &quot;Adelie&quot;</code></pre>
 <p>Now that we know how to access rows and columns, let’s talk about
 subsetting!</p>
@@ -3536,15 +3527,15 @@ subsetting!</p>
 <h2><span class="header-section-number">8.2</span> Introduction to
 Subsetting</h2>
 <p>Subsetting is a technique for filtering rows or columns in a given
-data frame in order to remove any rows/columns you are not interested in
-using.</p>
+data frame, usually to filter out any rows/columns you are not
+interested in using.</p>
 </div>
 <div id="subsetting-rows" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Subsetting rows</h2>
 <p>We can subset rows and columns, but let’s start off with focusing on
 how we can subset specific rows.</p>
-<p>We know that there are three species of penguins in this dataset:
-Adelie, Gentoo, and Chinstrap.</p>
+<p>We know that there are three penguin species in this dataset: Adelie,
+Gentoo, and Chinstrap.</p>
 <p>Let’s say we only wanted to focus on penguins from the Adelie
 species.</p>
 <p>Thankfully, the filter() function from the <strong>tidyverse</strong>
@@ -3552,19 +3543,12 @@ library makes subsetting a bit easier. Here, we will use the
 <code>filter()</code> function to subset the rows that represent
 penguins from the Adelie species and store these rows in a new data
 frame called “penguins_adelie”.</p>
-<pre class="r"><code>penguins_adelie &lt;- penguins %&gt;%
-  filter(species == &quot;Adelie&quot;)</code></pre>
-<p>If you open up the penguins_adelie dataframe using
-<code>View(penguins_adelie)</code> or manually clicking on the new data
-object in the R Environment window, you should see that all the rows in
-the <strong>species</strong> column of this data frame reflect the
-<strong>Adelie</strong> species.</p>
 <p>Let’s break down 2 operators here that are particularly
 important.</p>
-<p><em>%&gt;%</em> refers to piping, which lets you pass the result of
-one function directly as the input to the next function. Here, all we
-are doing is feeding in the penguins data frame into the filter()
-function.</p>
+<p><strong>%&gt;%</strong> refers to piping, which lets you pass the
+result of one function directly as the input to the next function. Here,
+all we are doing is feeding in the penguins data frame into the
+<code>filter()</code> function.</p>
 <p>Notice the two equals signs (<em>==</em>) in this part of the code:
 <code>filter(species == &quot;Adelie&quot;)</code></p>
 <p>When two value operators (=, &gt;, &lt;, !) are placed next to each
@@ -3577,6 +3561,13 @@ When we tell R to compare the value on the right with this specific
 column, what it is mechanically doing is iterating through each row
 within this column, comparing the column value, and determining whether
 the condition is TRUE or FALSE.</p>
+<pre class="r"><code>penguins_adelie &lt;- penguins %&gt;%
+  filter(species == &quot;Adelie&quot;)</code></pre>
+<p>If you open up the penguins_adelie dataframe using
+<code>View(penguins_adelie)</code> or manually clicking on the new data
+object in the R Environment window, you should see that all the rows in
+the <strong>species</strong> column of this data frame reflect the
+<strong>Adelie</strong> species.</p>
 <p>We can use this same strategy, piping (%&gt;%) and value operators
 (==), to subset columns as well.</p>
 </div>
@@ -3586,19 +3577,19 @@ columns</h2>
 <p>Let’s say we were only interested in examining bill length, and not
 as interested in examining bill depth, flipper length, body mass, sex,
 and year.</p>
-<p>We can use the select() function from the tidyverse library to keep
-the sample_number, species, island, and bill_length_mm columns, while
-also removing the columns we are not interested in (bill_depth_mm,
-flipper_length_mm, body_mass_g, sex, and year).</p>
+<p>We can use the <code>select()</code> function from the tidyverse
+library to keep certain columns (sample_number, species, island, and
+bill_length_mm), while also removing the columns we are not interested
+in (bill_depth_mm, flipper_length_mm, body_mass_g, sex, and year).</p>
 <p>Here, we will use the <code>select()</code> function to assign the
 columns of interest (sample_number, species, island, bill_length_mm)
 into a new data frame called “penguins_bill_length”.</p>
 <pre class="r"><code>penguins_bill_length &lt;- penguins %&gt;%
   select(sample_number, species, island, bill_length_mm)</code></pre>
 <p>If you open up the penguins_bill_length dataframe using
-<code>View(penguins_bill_length)</code> or manually clicking on
-penguins_bill_length in the R Environment window, you should see that
-only the columns we wanted to keep (sample_number, species, island,
+<code>View(penguins_bill_length)</code> or by manually clicking on
+penguins_bill_length in the R Environment window, you should only see
+the columns that we wanted to keep (sample_number, species, island,
 bill_length_mm).</p>
 </div>
 <div id="subsetting-based-on-multiple-conditions" class="section level2" number="8.5">
@@ -3608,7 +3599,7 @@ multiple conditions</h2>
 all rows that represent penguins from the Adelie species), we wanted to
 subset based on multiple conditions?</p>
 <p>We can take advantage of the OR ( <strong>|</strong> ) operator using
-the filter() function.</p>
+the <code>filter()</code> function.</p>
 <p>Let’s say we were only interested in examining Adelie or Gentoo
 penguins, but not Chinstrap penguins.</p>
 <p>We can use the <strong>OR</strong> operator to tell R to subset all
@@ -3617,23 +3608,24 @@ new data frame called “penguins_adelie_gentoo”.</p>
 <pre class="r"><code>penguins_adelie_gentoo &lt;- penguins %&gt;%
   filter(species == &quot;Adelie&quot; | species == &quot;Gentoo&quot;)</code></pre>
 <p>If you open up the <strong>penguins_adelie_gentoo</strong> data
-frame, you can see that all the rows in the <strong>species</strong>
-column represent <strong>Adelie</strong> or <strong>Gentoo</strong>
-penguins, but not <strong>Chinstrap</strong> penguins</p>
+frame, you can see that all the rows in the ‘species’ column represent
+<strong>Adelie</strong> or <strong>Gentoo</strong> penguins, but not
+Chinstrap penguins</p>
 <p>We can also take advantage of the AND ( <strong>&amp;</strong> )
-operator using the filter() function.</p>
+operator using the <code>filter()</code> function.</p>
 <p>Let’s say we were only interested in examining penguins from the
 Adelie species AND penguins that lived on Biscoe island.</p>
 <p>We can use the <strong>AND</strong> operator to tell R to subset all
-rows in the species column that are equal to “Adelie” AND all rows in
-the island column that are equal to “Biscoe” and store these rows in a
-new data frame called “penguins_adelie_biscoe”.</p>
+rows in the species column that are equal to <strong>Adelie</strong> AND
+all rows in the island column that are equal to <strong>Biscoe</strong>
+and store these rows in a new data frame called
+“penguins_adelie_biscoe”.</p>
 <pre class="r"><code>penguins_adelie_biscoe &lt;- penguins %&gt;%
   filter(species == &quot;Adelie&quot; &amp; island == &quot;Biscoe&quot;)</code></pre>
 <p>If you open up the <strong>penguins_adelie_biscoe</strong> data
-frame, you can see that all the rows in the <strong>species</strong>
-column represent <strong>Adelie</strong> and all the rows in the
-<strong>island</strong> column represent <strong>Biscoe</strong>.</p>
+frame, you can see that all the rows in the ‘species’ column represent
+<strong>Adelie</strong> and all the rows in the ‘island’ column
+represent <strong>Biscoe</strong>.</p>
 <p>As you can see, leveraging the OR ( <strong>|</strong> ) and AND (
 <strong>&amp;</strong> ) operators in conjunction with the
 `<code>filter()</code> function can be especially powerful.</p>
@@ -3641,10 +3633,12 @@ column represent <strong>Adelie</strong> and all the rows in the
 <div id="exercise-subsetting-data" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Exercise: Subsetting
 data</h2>
-<p>Let’s try an exercise where we have to subset data!</p>
+<p>Let’s try an exercise where we subset data!</p>
 <p><strong>1)</strong> Create a new data frame called
-“penguin_chinstrap” and subset all rows in the species column that
-represent penguins from the <em>Chinstrap</em> species.</p>
+“penguin_chinstrap” and subset all rows in the ‘species’ column that
+represent penguins from the <strong>Chinstrap</strong> species. Feel
+free to copy and paste from above, and tweak as needed in order to
+succesfully subset!</p>
 <pre class="r"><code>&#39;
 
 
