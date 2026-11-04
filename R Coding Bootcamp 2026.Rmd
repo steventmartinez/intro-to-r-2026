@@ -490,31 +490,16 @@ penguin_chinstrap <- penguins %>%
 
 ## Missing data 
 
-What if we wanted to see which rows had missing values (e.g., NA) or not? In other words, what if some penguins were missing information about their bill length?
+What if we wanted to see which rows had missing values (e.g., NA) or not? In other words, what if some penguins were missing information about their bill length? Let's go back to our original "penguins" data frame. 
 
-Let's go back to our original "penguins" data frame.
+Thankfully, R makes it relatively easy to identify and remove missing values (i.e., rows that have an 'NA') from a data frame.
 
-We can use the ```is.na()``` function to determine which rows have missing values in the *bill_length_mm* column.
-
-```{r, identify missing values}
-
-is.na(penguins$bill_length_mm)
-
-```
-
-This will produce an array of TRUEs and FALSEs of the same length as the rows in the dataframe, because each TRUE and FALSE is telling us whether each row value in that column meets the condition we defined. 
-
-For example, we see that the first output is FALSE, which means that the first row in the **bill_length_mm** column does NOT have a missing value. We can confirm this by opening up the penguins data frame and going to the first row in the **bill_length_mm** column and seeing that it is not empty.
-
-However, we see that the 4th output is TRUE, which means that the fourth row in the **bill_length_mm** column DOES have a missing value. We can confirm this by opening up the penguins data frame and going to the fourth row in the **bill_length_mm** column and seeing that it is indeed missing.
-
-But how can we remove missing data (i.e., rows that are blank or have an 'NA' in it) from a data frame?
-
-We can use the drop_na() function from the tidyverse library to create a new data frame called "penguins_complete" that only includes rows with no missing values in any columns.
+We can use the drop_na() function from the tidyverse library to create a new data frame called "penguins_complete" that removes every row that contains an 'NA' in any column, which will ultimately leave us with a data frame with no missing values in any columns.
 
 ```{r, drop rows with missing values}
 
-penguins_complete <- penguins %>% drop_na()
+#penguins <- read.csv("/Users/steven/Documents/GitHub/intro-to-r-2026/data/palmer-penguins_curated.csv")
+penguins_complete <- penguins %>% drop_na() #Remove every row that contains an 'NA' in any column
 
 ```
 
@@ -529,7 +514,28 @@ penguins_bill_length_complete <- penguins %>% drop_na(bill_length_mm)
 
 ```
 
-As you can see, the **penguins_bill_length_complete** data frame only includes rows that do not have a missing value in the *bill_length_mm* column, but still have missing values in other columns (e.g., sex)
+As you can see, the **penguins_bill_length_complete** data frame only includes rows that do not have a missing value in the *bill_length_mm* column, but still have missing values in other columns (e.g., body_mass_g, sex)
+
+
+What if, sometimes, the missing-ness of the data is represented not by NAs, but instead by blank values, by manually-entered text that says "NA", or by numeric values (999)?
+
+The easiest way to resolve this is to convert these values to NAs, and then to use the ```drop_na()``` function like we did before.
+
+```{r approach 1 missing values}
+
+#Approach 1: Use base R to convert blank, missing, or numeric values to NAs so that we can use NA-based filtering functions, like drop_na()
+penguins[penguins == ""] <- NA #Convert all blank values in the entire data frame to NAs
+penguins[penguins == "NA"] <- NA #Convert all "NA" text values in the entire data frame to NAs
+penguins[penguins == 999] <- NA #Convert all 999 numeric values in the entire data frame to NAs
+
+#Now we can use the drop_na() function like we did before!
+penguins_complete <- penguins %>% drop_na() #Remove every row that contains an 'NA' in any column
+
+
+```
+
+
+Now that we've clarified how to handle missing data, we are going to learn about how to use if-else statements.
 
 
 # If-else statements in R
@@ -538,26 +544,26 @@ An if-else statement is a powerful control flow tool that allows a computer to m
 
 It works kind of like a fork in the road: if a certain condition is true, the program follows one path of code; if the condition is false, it follows an alternative code path.
 
-It can be helpful to think of it as a digital version of decision-making -— "If it's raining, I'll take an umbrella; else, I'll leave without one.
+It can be helpful to think of it as a digital version of decision-making -— "If it's raining, I'll take an umbrella; else, I'll leave without one."
 
 ## General if-else structure
 Here's an example of what a general if-else expression looks like in R. This is similar to the fork/umbrella analogies that we discussed earlier.
 
 ```{r, general if-else statements, eval = FALSE}
 
-if (condition) {
-  expression
-} else {
-  expression
+if (condition) { #if this condition is true
+  expression #do this
+} else { #if the condition is not true
+  expression #do this instead
 }
 
 ```
 
 We can map this structure onto R's ```ifelse()``` function, which makes writing if-else statements a bit easier.
 
-Let's use an if-else statement to create a new column that represents whether an island existed in the Eastern or Western hemisphere of the world.
+Let's use an if-else statement to create a new column that represents whether an island is in the "Eastern" or "Western" hemisphere of the world.
 
-Let's say that the Biscoe island existed in the Eastern hemisphere, and the Dream and Torgersen islands existed in the Western hemisphere.
+Let's say that the Biscoe island is in the Eastern hemisphere, and the Dream and Torgersen islands are in the Western hemisphere.
 
 The structure for ifelse() statements is as follows: if the value in the **island** column has a cell that is equal to "Biscoe", R will insert a value of "Eastern" in the new **hemisphere** column for that corresponding cell, else, insert a value of "Western". 
 
@@ -590,32 +596,41 @@ We can also use a for-loop to accomplish the same outcome that we had when using
 
 A for-loop is one of the main control-flow constructs of the R programming language. It is used to iterate over a collection of objects, such as a vector, a list, a matrix, or a dataframe, and apply the same set of operations on each item of a given data structure. 
 
-For illustrative purposes, rather than overwriting the "hemisphere" column, let's make a new column called "hemisphere_loop"
+For illustrative purposes, rather than overwriting the "hemisphere" column, let's make a new column called "hemisphere_duplicate"
 
 ```{r, for loop, eval = FALSE}
 
-for (i in 1:length(penguins$island)) {  
-  if (penguins$island[i] == "Biscoe") {
-      penguins$hemisphere_loop[i] <- "Eastern"
-  } else {
-      penguins$hemisphere_loop[i] <- "Western"
+for (i in 1:length(penguins$island)) {               # 1) repeat once for every row in the 'island' column; i = 1, 2, 3, ...
+  if (penguins$island[i] == "Biscoe") {              # 2) is the island in row i "Biscoe"?
+      penguins$hemisphere_duplicate[i] <- "Eastern"  # 3) If yes -> write "Eastern" in row i
+  } else {                                           # 4) If no...
+      penguins$hemisphere_duplicate[i] <- "Western"  # 5) ...then write "Western" in row i
   }
-}
+}                                                    # 6) move to the next row and repeat
+
 
 ```
 
 
-Lets break this for-loop code down in some more detail.
+Let's break this for-loop down line by line.
 
-**1)** for (i in 1:length(penguins$island)) { --- "i" is a temporary variable that store the values of the current position in the range of the for loop. In this case, we are telling R that we want "i" to represent each row within the length of the island column, starting at row 1 and going all the way down until the last row in the island column. "i" will iterate across each of these rows.
+1. **`for (i in 1:length(penguins$island)) {`**
+   `i` is a temporary variable that keeps track of which row we're on. This part of the code `1:length(penguins$island)` creates the sequence 1, 2, 3... up until the last row. Each iteration of the loop moves `i` to the next row.
 
-**2)** if (penguins$island[i] == "Biscoe") { --- This if statement is saying: if the value of i in the specific iteration of the island row is equal to "Biscoe". Think about it as "if the *first* cell in the island row is equal to "Biscoe", then if the *second* cell in the island row is equal to "Biscoe", then if the *third* cell in the island row is equal to "Biscoe", and so on..
+2. **`if (penguins$island[i] == "Biscoe") {`**
+   Checks whether the island in row `i` is "Biscoe". On the first pass of the loop, R checks row 1; on the second pass, R checks row 2; and so on.
 
-**3)** penguins$hemisphere_loop[i] <- "Eastern" --- input a value of "Eastern" into the corresponding cell of the new "hemisphere_loop" column.
+3. **`penguins$hemisphere_duplicate[i] <- "Eastern"`**
+   If the island *is* "Biscoe", write "Eastern" into row `i` of the new `hemisphere_duplicate` column.
 
-**4)** } else { --- the initiation of the else condition
+4. **`} else {`**
+   If the island is *not* "Biscoe"...
 
-**5)** penguins$hemisphere_loop[i] <- "Western" -- input a value of "Western" into the corresponding cell of the new "hemisphere_loop" column
+5. **`penguins$hemisphere_duplicate[i] <- "Western"`**
+   ...then put "Western" into row `i` of `hemisphere_duplicate`.
+
+6. **`}`** (the final closing brace)
+   Ends this pass of the loop. R adds 1 to `i` (which would move the loop onto the next row) and goes back to step 2, until every row has been checked.
 
 
 # Merging data
@@ -628,11 +643,11 @@ To illustrate why merging is especially powerful, let's start by reading in the 
 penguins_raw <- read.csv(file = "palmer-penguins_raw.csv") #Load in the palmer-penguins_raw CSV file and store it in a data frame called "penguins_raw"
 ```
 
-In the original penguins dataset that we've been working with, we can examine bill length (bill_length_mm) and flipper length (flipper_length_mm), but let's say we were really interested in examining culmen (the ridge along the top part of a penguin's bill) length. As we can see, the original penguins dataset does not have this information, but the palmer-penguins raw dataset does!
+In the original penguins dataset that we've been working with, we can examine bill length (bill_length_mm) and flipper length (flipper_length_mm), but let's say we were really interested in examining culmen length (the ridge along the top part of a penguin's bill). Although the original penguins dataset does not have this information, the palmer-penguins raw dataset does!
 
 ![](images/palmerpenguins_culmen_length.png){width=45%}
 
-We can combine these two data frames into one data frame, so that we have all the information in one place, and so that we can examine culmen length.
+We can combine these two data frames into one data frame, so that we have all the information in one place.
 
 Let's use the ```merge()``` function to merge the original penguins data frame and the penguins_raw data frame into a new data frame called "penguins_merged".
 
@@ -644,13 +659,14 @@ Here's the general structure of the merge() function.
 
 ```{r, merge data frames}
 
+#Basic structure: df <- merge(x, y, by=c(col1, col2, col3))
 penguins_merged <- merge(penguins, penguins_raw, by=c("sample_number", "species", "island", "flipper_length_mm", "body_mass_g", "sex"))
 
 ```
 
 In our code, **x** and **y** represent the data frames we want to merge. All of the columns listed in the **by=c** expression represent the columns that are shared across both data frames (i.e., species, bill_length_mm, flipper_length_mm, body_mass_g, sex), so that R knows which columns we want to match across.
 
-In this way, R will then be able to match the columns that are NOT shared across the two data frames (i.e., bill_length_mm, bill_depth_mm, year, stage, clutch_competition, date_eg, culmen_length_mm, culmen_depth_mm, delta_15_n, delta_13_c, comments).
+In this way, R will then be able to identify the columns that are NOT shared across the two data frames (i.e., bill_length_mm, bill_depth_mm, year, stage, clutch_competition, date_eg, culmen_length_mm, culmen_depth_mm, delta_15_n, delta_13_c, comments).
 
 Now we have all the information we need in one place!
 
@@ -661,7 +677,7 @@ Next we will learn how to pivot data from wide to long, and long to wide.
 
 Before we get started with pivoting, let's subset a smaller data frame just to make it easier to work with.
 
-Let's say we only wanted to focus on the length of different anatomical regions (i.e., bill, flipper, culmen). We can subset a data frame with the following columns: sample_number, species, island, bill_length_mm, flipper_length_mm, culmen_length_mm, and sex and store these columns in a new data frame called "penguins_length".
+Let's say we only wanted to focus on the length of different anatomical regions (i.e., bill, flipper, culmen). We can use the ```select()``` function to subset a data frame with the following columns: sample_number, species, island, bill_length_mm, flipper_length_mm, culmen_length_mm, and sex and store these columns in a new data frame called "penguins_length".
 
 ```{r, susbet data for long pivot}
 penguins_length <- penguins_merged %>%
@@ -675,19 +691,15 @@ When data exists in a "wide" format, that means that each individual only has 1 
 
 When data exists in a "long" format, that means that each individual has more than 1 row (i.e., repeated-measures). 
 
-For the purposes of understanding how to pivot data frames, we will be using the **penguins_length** data frame that we just created.
+For the purposes of understanding how to pivot data frames, we will be using the **penguins_length** data frame that we just created. In order to do many statistical analyses, data usually needs to be in **long** format.
 
-In order to do many common statistical analyses, data needs to be in **long** format. For example, let's say we wanted to show how bill, flipper, and culmen length differ across penguin species. 
-
-If we wanted to make a graph to visualize this comparison (bill length vs flipper length vs culmen length), we could use the **species** column as our x-variable, but what would our Y variable be? There are 3 columns (1 for bill_length_mm, 1 for flipper_length_mm, and 1 for culmen_length_mm), but there is only 1 Y-variable. So as the data currently stands, we could not create a graph that shows these comparisons! We must pivot.
-
-The ```pivot_longer()``` function from the tidyr package in R can be used to pivot a data frame from a wide format to a long format.
+The ```pivot_longer()``` function from the tidyr package in R can be used to pivot a data frame from wide format to long format.
 
 ```{r, pivot longer, echo=TRUE}
 
 penguins_long <- penguins_length %>% pivot_longer(
                         cols=c("bill_length_mm", "flipper_length_mm", "culmen_length_mm"), #The names of the columns to pivot
-                        names_to = "measure", #The name for the new character column
+                        names_to = "measure", #The name for the new category column
                         values_to = "length") #The name for the new values column
 
 ```
