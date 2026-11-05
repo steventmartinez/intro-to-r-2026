@@ -50,7 +50,7 @@ This is the basic workflow that most R scripts work through, and it's the framew
 
 # Are you ready to start learning R?
 
-![](images/Learning_R.jpeg){width=60% height=400px}
+![](images/Learning_R.jpeg){width=70% height=400px}
 
 
 # Intro to RMarkdown
