@@ -200,11 +200,11 @@ And here's a visualization of what that file path looks like on a computer:
 
 Each part of the file path is a separate folder that we are traversing through.
 
-File paths are especially important for setting your working directory and finding the data that you want to work with, just like we'll need to do for this workshop. 
+File paths are especially important for finding the data that you want to work with, just like we'll need to do for this workshop. 
 
 ## What is a working directory?
 
-In order to start working with the palmerpenguins datasets, we need to revisit the concept of "file paths". We'll use our understanding of file paths to set our "working directory". At this point, some people may be wondering what a "working directory" is.
+In order to start working with the palmerpenguins datasets, we need to understand how R finds files on our computer. We'll use our understanding of file paths to set our "working directory". At this point, some people may be wondering what a "working directory" is.
 
 A working directory refers to the specific file path on your computer where R (or any programming language) will look for files by default. Like any other language or program, R needs to be told where the file that we’d like to work with is located on our computer. It doesn’t just know automatically where every file is on a person's computer. 
 
@@ -225,7 +225,7 @@ As you can see, my working directory is currently set at: **"/Users/steven/Deskt
 The output probably doesn't make much sense to anyone because this working directory file path is specific to my computer! Each of our working directory file paths will be specific to the computer we are using.
 
 
-## Setting your Working Directory
+## Storing your File Path
 
 In order to work with the palmerpenguins datasets, we need to tell R where the files are located. We can create a new object that stores a specific file path to make this process easier. File paths will differ based on whether you are using a Windows versus a Mac. 
 
@@ -245,9 +245,9 @@ On my computer, here's where the palmerpenguins data exists:
 
 ![](images/FilePath_Visualization_penguins.png)
 
-In order to work with the palmer-penguins_curated.csv file, I'll need to set my working directory to this file path!
+In order to work with the palmer-penguins_curated.csv file, I'll need to tell R where the file is located!
 
-Let's store this file path in an object called "Path".
+Let's store this file path in an object called "Path". Make sure your path ends with a /!
 ```{r Setting Working Directory, eval=FALSE,include=TRUE, message=FALSE, warning=FALSE, error=FALSE}
 
 # For Windows
@@ -264,14 +264,6 @@ Path <- here::here("data/")
 
 This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026-main/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
 
-We'll next use this **Path** object to set our working directory using the ```setwd()``` command. The ```setwd()``` command tells R where to look for files on our computer.
-
-```{r, set working directory, eval=FALSE}
-setwd(Path) #use the setwd() function to assign the "Path" object that we created earlier as the working directory
-```
-
-***Important note about setwd() and R Markdown***! In a regular R script, ```setwd()``` changes the working directory until you change it again. But inside an R Markdown chunk, ```setwd()``` only lasts until the end of that chunk. So in this file, we’ll give R the full file path every time we load a file, using ```paste0()``` to glue our Path object and the file name together. (Make sure your Path ends with a /!!!!)
-
 Amazing!! Now that we’ve saved the location of our data in the Path object, we can load in the palmer-penguins data!
 
 # Loading Data
@@ -282,18 +274,23 @@ Before we load in the palmer-penguins data, I want to highlight a little termino
 ## How do I load data into R?
 There are many ways to load data into R and they all depend upon what format the data is in. R can handle data from .csv, .xlsx, .txt, .html, .json, SPSS, Stata, SAS, among others. R also has it’s own data format (.RDA, .Rdata). With the exception of .RDA, .csv is often the cleanest means of reading in data. We won’t cover the other formats, but they are fairly exhaustively covered *<hyperlink/in this tutorial/>*. https://www.datacamp.com/tutorial/r-data-import-tutorial
 
-In the most basic sense, we can load our palmer-penguins_curated.csv data file using the read.csv() function like this:
+To load our data, we'll use two functions together:
 
-The ```read.csv()``` command loads in the data. If done correctly, we should see our R **Environment** populate with a dataframe labeled **penguins**. 
+- **`read.csv()`** reads a CSV file into R.
+- **`paste0()`** glues pieces of text together. We'll use it to combine our **Path** object (the folder) with the file name, creating the complete file path that `read.csv()` needs.
 
+For example, if `Path` is `"/Users/steven/Desktop/intro-to-r-2026-main/data/"`, then:
+
+`paste0(Path, "palmer-penguins_curated.csv")`
+
+functionally becomes:
+
+`"/Users/steven/Desktop/intro-to-r-2026-main/data/palmer-penguins_curated.csv"`
 
 ```{r loading in data }
 
 penguins <- read.csv(file = paste0(Path, "palmer-penguins_curated.csv")) #Load in the palmer-penguins_curated CSV file and store it in a data frame called "penguins"
 ```
-
-
-IMPORTANT!!! This command ```read.csv(file = paste0(Path, "palmer-penguins_curated.csv"))``` is effectively the same as ```read.csv(file = "/Users/steven/Desktop/intro-to-r-2026-main/data/palmer-penguins_curated.csv")```
 
 
 ![**A visualization of the Environment Window.**](images/R_Environment.png)  
@@ -537,9 +534,9 @@ What if, sometimes, the missing-ness of the data is represented not by NAs, but 
 
 The easiest way to resolve this is to convert these values to NAs, and then to use the ```drop_na()``` function like we did before.
 
-```{r approach 1 missing values}
+```{r missing values}
 
-#Approach 1: Use base R to convert blank, missing, or numeric values to NAs so that we can use NA-based filtering functions, like drop_na()
+#Use base R to convert blank, missing, or numeric values to NAs so that we can use NA-based filtering functions, like drop_na()
 penguins[penguins == ""] <- NA #Convert all blank values in the entire data frame to NAs
 penguins[penguins == "NA"] <- NA #Convert all "NA" text values in the entire data frame to NAs
 penguins[penguins == 999] <- NA #Convert all 999 numeric values in the entire data frame to NAs

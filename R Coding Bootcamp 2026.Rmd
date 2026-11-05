@@ -1,6 +1,11 @@
 ---
 title: "Introduction to R (2026)"
+author: "Your Name"
 date: "November 12, 2026"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 
@@ -119,13 +124,12 @@ We'll need these 4 packages for the rest of the workshop: **tidyverse**, **repor
 
 If a package loaded successfully, R won't print an error. Some packages (like tidyverse) print a list of messages when they load. That's annoying, but normal! You only need to worry if you see a message that starts with **`Error`**, or `there is no package called...`.
 
-## Exercise: Installing and Loading Packages
-```{r exercise: installing and loading packages, code="'\n\n\n\n'", results=F}
+```{r exercise installing and loading packages}
 
 
-  
+
+
 ```
-
 
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol1.r)
 
@@ -163,17 +167,17 @@ And here's a visualization of what that file path looks like on a computer:
 
 Each part of the file path is a separate folder that we are traversing through.
 
-File paths are especially important for setting your working directory and finding the data that you want to work with, just like we'll need to do for this workshop. 
+File paths are especially important for finding the data that you want to work with, just like we'll need to do for this workshop. 
 
 ## What is a working directory?
 
-In order to start working with the palmerpenguins datasets, we need to revisit the concept of "file paths". We'll use our understanding of file paths to set our "working directory". At this point, some people may be wondering what a "working directory" is.
+In order to start working with the palmerpenguins datasets, we need to understand how R finds files on our computer. That brings us to the idea of a "working directory".
 
 A working directory refers to the specific file path on your computer where R (or any programming language) will look for files by default. Like any other language or program, R needs to be told where the file that we’d like to work with is located on our computer. It doesn’t just know automatically where every file is on a person's computer. 
 
 Below we'll use the ```getwd()``` command to find out where where your current working directory is.
 
-```{r getwd(), eval=T}
+```{r getwd}
 
 getwd() #get your current working directory
 
@@ -184,7 +188,7 @@ As you can see, my working directory is currently set at: **"/Users/steven/Deskt
 The output probably doesn't make much sense to anyone because this working directory file path is specific to my computer! Each of our working directory file paths will be specific to the computer we are using.
 
 
-## Setting your Working Directory
+## Storing your File Path
 
 In order to work with the palmerpenguins datasets, we need to tell R where the files are located. We can create a new object that stores a specific file path to make this process easier. File paths will differ based on whether you are using a Windows versus a Mac. 
 
@@ -204,10 +208,12 @@ On my computer, here's where the palmerpenguins data exists:
 
 ![](images/FilePath_Visualization_penguins.png)
 
-In order to work with the palmer-penguins_curated.csv file, I'll need to set my working directory to this file path!
+In order to work with the palmer-penguins_curated.csv file, I'll need to tell R where the file is located!
 
-Let's store this file path in an object called "Path".
-```{r Setting Working Directory, eval=FALSE,include=TRUE, message=FALSE, warning=FALSE, error=FALSE}
+Let's store this file path in an object called "Path". Make sure your path ends with a /!
+```{r Setting Working Directory}
+# Replace the path below with the path to the data folder on YOUR computer
+# (keep the / at the end!), and delete the line for the system you're not using
 
 # For Windows
 Path <- "C:/Users/steven/Desktop/intro-to-r-2026-main/data/"
@@ -217,15 +223,10 @@ Path <- "/Users/steven/Desktop/intro-to-r-2026-main/data/"
 
 ```
 
+
 This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026-main/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
 
-We'll next use this **Path** object to set our working directory using the ```setwd()``` command. The ```setwd()``` command tells R where to look for files on our computer.
-
-```{r, set working directory, eval=FALSE}
-setwd(Path) #use the setwd() function to assign the "Path" object that we created earlier as the working directory
-```
-
-Amazing! Now that our working directory is set to the correct file path, we can start load in the palmer-penguins data!
+Amazing!! Now that we’ve saved the location of our data in the Path object, we can load in the palmer-penguins data!
 
 # Loading Data
 
@@ -235,17 +236,23 @@ Before we load in the palmer-penguins data, I want to highlight a little termino
 ## How do I load data into R?
 There are many ways to load data into R and they all depend upon what format the data is in. R can handle data from .csv, .xlsx, .txt, .html, .json, SPSS, Stata, SAS, among others. R also has it’s own data format (.RDA, .Rdata). With the exception of .RDA, .csv is often the cleanest means of reading in data. We won’t cover the other formats, but they are fairly exhaustively covered *<hyperlink/in this tutorial/>*. https://www.datacamp.com/tutorial/r-data-import-tutorial
 
-In the most basic sense, we can load our palmer-penguins_curated.csv data file using the read.csv() function like this:
+To load our data, we'll use two functions together:
 
-The ```read.csv()``` command loads in the data. If done correctly, we should see our R **Environment** populate with a dataframe labeled **penguins**. 
+- **`read.csv()`** reads a CSV file into R.
+- **`paste0()`** glues pieces of text together. We'll use it to combine our **Path** object (the folder) with the file name, creating the complete file path that `read.csv()` needs.
 
+For example, if `Path` is `"/Users/steven/Desktop/intro-to-r-2026-main/data/"`, then:
+
+`paste0(Path, "palmer-penguins_curated.csv")`
+
+functionally becomes:
+
+`"/Users/steven/Desktop/intro-to-r-2026-main/data/palmer-penguins_curated.csv"`
 
 ```{r loading in data }
-penguins <- read.csv(file = "palmer-penguins_curated.csv") #Load in the palmer-penguins_curated CSV file and store it in a data frame called "penguins"
+
+penguins <- read.csv(file = paste0(Path, "palmer-penguins_curated.csv")) #Load in the palmer-penguins_curated CSV file and store it in a data frame called "penguins"
 ```
-
-
-IMPORTANT!!! This command ```read.csv(file = "palmer-penguins_curated.csv")``` is effectively the same as ```read.csv(file = "/Users/steven/Desktop/intro-to-r-2026-main/data/palmer-penguins_curated.csv")```
 
 
 ![**A visualization of the Environment Window.**](images/R_Environment.png)  
@@ -257,7 +264,7 @@ We can also view the **penguins** data frame by using the ```View()``` command. 
 
 If we want to look at the first few rows of the penguins data frame, we can use the ```head()``` command.
 
-```{r, head and View functions, eval=2}
+```{r, head and View functions}
 View(penguins) #Will open up the full data frame
 head(penguins) #Will show you the first six rows in the data frame
 ```
@@ -279,8 +286,8 @@ Amazing! Now let's get a better idea of what each column in the dataset actually
 | **species** | The three types of penguin species |
 | **island** | The three types of island |
 | **bill_length_mm** | A continuous number denoting bill length in millimeters |
-| **bill_depth_mm** | An continuous number denoting bill depth in millimeters |
-| **flipper_length_mm** | An integer number flipper length in millimeters |
+| **bill_depth_mm** | A continuous number denoting bill depth in millimeters |
+| **flipper_length_mm** | An integer number denoting flipper length in millimeters |
 | **body_mass_g** | An integer denoting body mass in grams |
 | **sex** | Sex of the penguin |
 | **year** | Year when the study took place |
@@ -442,9 +449,11 @@ Feel free to copy and paste code from above, and tweak as needed!
 
 When you are done, open `penguin_chinstrap` with `View(penguin_chinstrap)` or click it in the R Environment window. Every row in the `species` column should say "Chinstrap".
 
-```{r subsetting exercise, code="'\n\n\n\n'", results=F}
+```{r exercise subsetting data}
 
-  
+
+
+
 ```
 
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol2.r)
@@ -482,9 +491,9 @@ What if, sometimes, the missing-ness of the data is represented not by NAs, but 
 
 The easiest way to resolve this is to convert these values to NAs, and then to use the ```drop_na()``` function like we did before.
 
-```{r approach 1 missing values}
+```{r missing values}
 
-#Approach 1: Use base R to convert blank, missing, or numeric values to NAs so that we can use NA-based filtering functions, like drop_na()
+#Use base R to convert blank, missing, or numeric values to NAs so that we can use NA-based filtering functions, like drop_na()
 penguins[penguins == ""] <- NA #Convert all blank values in the entire data frame to NAs
 penguins[penguins == "NA"] <- NA #Convert all "NA" text values in the entire data frame to NAs
 penguins[penguins == 999] <- NA #Convert all 999 numeric values in the entire data frame to NAs
@@ -538,18 +547,21 @@ penguins <- penguins %>%
 
 ```
 
-Here's what our code would look like within the general if-else expression that we showed above.
+A regular ```if``` statement works a little differently: it can only check one value at a time. For example, here’s how we would check the island in row 1:
 
-```{r, general if-else structure, eval = FALSE}
+```{r, general if-else structure}
 
-#General structure of if statement
-if (penguins$island == "Biscoe") {
-  penguins$hemisphere <- "Eastern"
+#Check whether the island in row 1 is "Biscoe"
+if (penguins$island[1] == "Biscoe") {
+  "Eastern"
 } else {
-  penguins$hemisphere <- "Western"
+  "Western"
 }
 
 ```
+
+
+To check every row with a regular if statement, we need to repeat it once per row. That’s what a for-loop does!!!!
 
 
 ## For-loop with an if-else statement
@@ -559,7 +571,7 @@ A for-loop is one of the main control-flow constructs of the R programming langu
 
 For illustrative purposes, rather than overwriting the "hemisphere" column, let's make a new column called "hemisphere_duplicate"
 
-```{r, for loop, eval = FALSE}
+```{r, for loop}
 
 for (i in 1:length(penguins$island)) {               # 1) repeat once for every row in the 'island' column; i = 1, 2, 3, ...
   if (penguins$island[i] == "Biscoe") {              # 2) is the island in row i "Biscoe"?
@@ -601,7 +613,7 @@ Merging data frames allows us to combine different datasets based on common vari
 To illustrate why merging is especially powerful, let's start by reading in the **palmer-penguins_raw** CSV file, which contains additional information about the penguins.
 
 ```{r, read in penguins_raw CSV file}
-penguins_raw <- read.csv(file = "palmer-penguins_raw.csv") #Load in the palmer-penguins_raw CSV file and store it in a data frame called "penguins_raw"
+penguins_raw <- read.csv(file = paste0(Path, "palmer-penguins_raw.csv")) #Load in the palmer-penguins_raw CSV file and store it in a data frame called "penguins_raw"
 ```
 
 In the original penguins dataset that we've been working with, we can examine bill length (bill_length_mm) and flipper length (flipper_length_mm), but let's say we were really interested in examining culmen length (the ridge along the top part of a penguin's bill). Although the original penguins dataset does not have this information, the palmer-penguins raw dataset does!
@@ -615,7 +627,7 @@ Let's use the ```merge()``` function to merge the original penguins data frame a
 Here's the general structure of the `merge()` function:
 
 - **`x` and `y`**: the two data frames you want to merge
-- **`by`**: the column(s) that both data frames share, which R uses to **match up rows**. For two rows to be merge, they must have the *same values* in every `by` column.
+- **`by`**: the column(s) that both data frames share, which R uses to **match up rows**. For two rows to be merged, they must have the *same values* in every `by` column.
 
 Think of `by` as a matching function: R looks for the row in `penguins_raw` with the same sample number, species, island (and so on) as a row in `penguins`, and glues the two rows together side by side. Any columns that are *not* listed in `by` are simply carried along, so the merged data frame ends up with the columns from both.
 
@@ -631,7 +643,7 @@ penguins_merged <- merge(penguins, penguins_raw,
 
 ```
 
-In our code, **x** and **y** represent the data frames we want to merge. All of the columns listed in the **by=c** expression represent the columns that are shared across both data frames (i.e., species, bill_length_mm, flipper_length_mm, body_mass_g, sex), so that R knows which columns we want to match across.
+In our code, **x** and **y** represent the data frames we want to merge. All of the columns listed in the **by=c** expression represent the columns that are shared across both data frames (i.e., sample_number, species, island, flipper_length_mm, body_mass_g, sex), so that R knows which columns we want to match across.
 
 In this way, R will then be able to identify the columns that are NOT shared across the two data frames (i.e., bill_length_mm, bill_depth_mm, year, stage, clutch_competition, date_eg, culmen_length_mm, culmen_depth_mm, delta_15_n, delta_13_c, comments).
 
@@ -724,16 +736,19 @@ Let's try an exercise where we pivot data from wide to long!
 
 **Step 3:** Check the new data frame! `penguin_pivot_exercise_long` should have 4 columns (`sample_number`, `species`, `bill_measure`, `length`) and **2 rows per penguin**, one for bill length and one for bill depth.
 
-```{r Pivot Exercise, code="'\n\n\n\n'", results=F}
+```{r exercise pivoting data}
+
+
 
 
 ```
+
 
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol3.r)
 
 
 
-# Statistical analyses: T-tests, ANOVAs, and Linear regresions
+# Statistical analyses: T-tests, ANOVAs, and Linear regressions
 
 Next, we are going to start talking about different types of statistical analyses in R! 
 
@@ -753,7 +768,7 @@ For our analyses, let's use the **penguins_length** data frame that we created e
 - `island`
 - `bill_length_mm`
 - `flipper_length_mm`
-- `culmen_length_mm.`
+- `culmen_length_mm`
 
 To make things easier for our analyses, let's remove any rows with missing values in the data using the ```drop_na()``` function.
 
@@ -781,7 +796,7 @@ Below, we propose a research question and t-test analysis.
 
 Now let's do the t-test!
 
-We'll need to use conditional statements again to specify our variables. What we are comparing here are the mean values of flipper length for Adelie and Gentoo penguins. As such, we are going to specify we want flipper length when species == "Adelie" and when species == "Gentoo. We next have an argument which asks us whether this analysis is within-subjects or between-subjects. This question is between-subjects (independent samples), since each penguin is either from the Adelie species or the Gentoo species, so we'll mark that as FALSE. Lastly, R is asking us to define our alternative hypothesis, which is a little beyond the scope of this review, so you will have to take my word that “two.sided” is the right call. 
+We'll need to use conditional statements again to specify our variables. What we are comparing here are the mean values of flipper length for Adelie and Gentoo penguins. As such, we are going to specify we want flipper length when species == "Adelie" and when species == "Gentoo". We next have an argument which asks us whether this analysis is within-subjects or between-subjects. This question is between-subjects (independent samples), since each penguin is either from the Adelie species or the Gentoo species, so we'll mark that as FALSE. Lastly, R is asking us to define our alternative hypothesis, which is a little beyond the scope of this review, so you will have to take my word that “two.sided” is the right call. 
 
 
 ```{r, t-test}
@@ -819,7 +834,7 @@ Next we'll talk about running an ANOVA test!
 
 An ANOVA, or Analysis of Variance, can be used when both the predictor variable or variables consist of two or more **categorical** options and the outcome or dependent variable is **numeric** in value. Much like a t-test, an ANOVA tells you how significant the differences between these categories or groups are. The advantage over T-tests is that we can compare multiple groups or categories in one analysis. We could revisit our last horrible example and imagine that the evil teacher tells one group right chapter to study from, one group the wrong chapter to study from, and one group to not study at all. An ANOVA test will tell us whether any of these three groups are different from one another (but not necessarily which specific groups are different from one another). 
 
-Using the penguins_merged dataframe, we'll run a similar analysis that we did for the t-test, but this time, rather than only using two penguin species (Adelie and Gentoo), we'll include all three penguin species (Adelie, Gentoo, and Chinstrap).
+Using the penguins_length dataframe, we'll run a similar analysis that we did for the t-test, but this time, rather than only using two penguin species (Adelie and Gentoo), we'll include all three penguin species (Adelie, Gentoo, and Chinstrap).
 
 **QUESTION**: Does bill length differ across penguin species (i.e., Adelie, Gentoo, Chinstrap)?
 
@@ -901,7 +916,7 @@ report(m1)
 
 ```
 
-Linear regression results show that bill length statistically predicts flipper length, as observed by model output stats: (beta = 1.67, 95% CI [0.57, 0.73], t(331) = 15.69, p < .001).
+Linear regression results show that bill length statistically predicts flipper length, as observed by model output stats: (beta = 1.67, 95% CI [1.46, 1.88], t(331) = 15.69, p < .001).
 
 
 ![](images/theoffice.jpeg)
@@ -961,7 +976,7 @@ ggplot2 refers to the name of the package itself, whereas we use the ```ggplot()
 
 ## Histograms
 
-We can start off by generating a histogram to visualize our dataset and see the distribution of flipper length and color code it by penguin species. The ```geom_histogram()``` argument is what allows us to make the histogram!
+We can start off by generating a histogram to visualize our dataset and see the distribution of flipper length and color code it by penguin species. The ```geom_histogram()``` function is what allows us to make the histogram!
 
 ```{r, histogram}
 
@@ -994,13 +1009,13 @@ As a quick reminder, standard error bars reflect the uncertainty or variability 
 
 The ```summarySE()``` function is appropriate when working with between-subjects variables. If you have within-subjects variables and want to adjust the error bars so that inter-subject variability is removed as suggested in Loftus and Masson (1994), then the other two functions, normDataWithin() and summarySEwithin() must also be added to your code; summarySEwithin would then be the function that you call.
 
-You don't have to change anything in this code -- just run it as it is! All this code is doing is authorizing the use of the ```summarySE()``` function.
+You don't have to change anything in this code -- just run it as it is! All this code is doing is creating the ```summarySE()``` function.
 
 ```{r, standard error function}
 
 ## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
 ##   data: a data frame.
-##   measurevar: the name of a column that contains the variable to be summariezed
+##   measurevar: the name of a column that contains the variable to be summarized
 ##   groupvars: a vector containing names of columns that contain grouping variables
 ##   na.rm: a boolean that indicates whether to ignore NA's
 ##   conf.interval: the percent range of the confidence interval (default is 95%)
@@ -1063,7 +1078,7 @@ Next, we'll visualize the bivariate linear regression that we ran above, where w
 
 We can use a scatterplot to visualize this relationship and add a linear regression line to the plot.
 
-```{r}
+```{r, scatterplot}
 ggplot(penguins_length, aes(x=bill_length_mm, y=flipper_length_mm)) + #Plot the variables we are interested in
    geom_point() + #geom_point() is the function used to create scatter plots
    geom_smooth(method=lm, color="black")  #Adds a linear regression line to your plot
@@ -1081,7 +1096,7 @@ Let's say our goal was to examine whether bill length significantly differs from
 
 Here's what a complete pipeline could look like to address this question using the **tidyverse** library in R!
 
-```{r, tidy pipeline, eval=FALSE}
+```{r, tidy pipeline}
 
 #Step 1: Load the R packages you will be working with (this assumes that you've previously installed the R packages).
 library(tidyverse)
@@ -1090,7 +1105,7 @@ library(lme4)
 library(ggplot2)
 
 #Step 2: Read the data into R
-penguins <- read.csv(file = "palmer-penguins_curated.csv") #Load in the penguins CSV file and store it in a data frame called "penguins"
+penguins <- read.csv(file = paste0(Path, "palmer-penguins_curated.csv")) #Load in the penguins CSV file and store it in a data frame called "penguins"
 
 #Step 3: Subset the columns you are interested in using the select() function
 penguins_length_pipeline <- penguins %>%
@@ -1107,13 +1122,13 @@ penguins_pipeline_long <- penguins_pipeline_long %>% drop_na()
 
 
 #Step 6: Run a t-test to determine whether bill length significantly differs from flipper length
-model2 <- t.test(x = penguins_pipeline_long$length[penguins_pipeline_long$anatomical_region == "bill_length_mm"],
+model3 <- t.test(x = penguins_pipeline_long$length[penguins_pipeline_long$anatomical_region == "bill_length_mm"],
                 y = penguins_pipeline_long$length[penguins_pipeline_long$anatomical_region == "flipper_length_mm"],
                 paired = FALSE,
                 alternative = "two.sided")
 
 #Step 7: Interpret results of t-test output
-report(model2)
+report(model3)
 
 #Step 8: Calculate the standard errors before plotting
 #summarySE provides the standard deviation, standard error of the mean, and a (default 95%) confidence interval
