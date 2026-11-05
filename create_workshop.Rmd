@@ -186,7 +186,7 @@ Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and envir
 # Working Directory
 
 
-## File Paths
+## Conceptualizing File Paths
 
 Before we start talking about a "working directory", let's quickly unpack what a "file path" is on a computer.
 
