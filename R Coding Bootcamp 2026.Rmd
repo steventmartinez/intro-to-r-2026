@@ -84,14 +84,14 @@ That’s because a typical script will interpret any text as a command, unless t
 
 ![](images/RMarkdown_blah.png){width=35%}
 
-Here's a quick overview of the R Markdown chunk buttons you'll use most often:
+Here's a quick overview of the R Markdown chunk buttons you'll use most often (I took screenshots of the buttons in 'dark mode' please don't yell at me)
 
 | Button | Name | Where to find it | What it does |
 |:------:|:-----|:-----------------|:-------------|
 | ![](images/ChunkRun.png){height=22px} | **Run Current Chunk** | Top-right corner of the chunk | Runs all the code in this chunk |
-| ![](images/ChunkRunAll.png){height=22px} | **Run All Chunks Above** | Top-right corner of the chunk | Runs every chunk *above* this one, which is handy for catching up after restarting R |
+| ![](images/ChunkRunAll.png){height=22px} | **Run All Chunks Above** | Top-right corner of the chunk | Runs every chunk *above* this one |
 | ![](images/ChunkMin.png){height=22px} | **Fold Code** | Left side, next to the line numbers | Collapses (hides) the chunk and its output to save space |
-| ![](images/ChunkSettings.png){height=22px} | **Modify Chunk Options** | Top-right corner of the chunk | Opens settings for the chunk, like whether to show its code or output |
+| ![](images/ChunkSettings.png){height=22px} | **Modify Chunk Options** | Top-right corner of the chunk | Opens settings for the given chunk |
 
 
   
