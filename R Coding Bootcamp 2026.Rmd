@@ -1,36 +1,7 @@
 ---
 title: "Introduction to R (2026)"
-author: 
-  - name: "**Content Creator: Steven Martinez & Helen Schmidt**"
-  - name: "**Instructor: Steven Martinez**"
 date: "November 12, 2026"
-output: 
-  html_document: 
-    toc: true
-    toc_depth: 2
-    toc_float:
-      collapsed: true
-    self_contained: yes
-    mode: selfcontained
-    df_print: paged    
-    code_folding: show
-    number_sections: true
-    css: !expr here::here("misc/style_bootcamp.css")
-knit: (function(inputFile, encoding) { 
-      out_dir <- './';
-      rmarkdown::render(inputFile,
-                        encoding=encoding, 
-                        output_file=file.path(dirname(inputFile), out_dir, 'index.html')) })                        
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
-```{r, echo=FALSE}
-
-knitr::opts_chunk$set(error = TRUE, warning = FALSE, message = FALSE)
-knitr::opts_knit$set(root.dir = here::here())
-
-```
 
 
 # Introduction
@@ -156,15 +127,6 @@ If a package loaded successfully, R won't print an error. Some packages (like ti
 ```
 
 
-```{r exercise: installing and loading packages - hidden, eval=T, include=F}
-
-library(tidyverse)
-library(report)
-library(lme4)
-library(ggplot2)
-
-```
-
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol1.r)
 
   
@@ -211,14 +173,10 @@ A working directory refers to the specific file path on your computer where R (o
 
 Below we'll use the ```getwd()``` command to find out where where your current working directory is.
 
-```{r getwd(), eval=FALSE}
+```{r getwd(), eval=T}
 
 getwd() #get your current working directory
 
-```
-
-```{r getwd output, echo=FALSE}
-"/Users/steven/Desktop/intro-to-r-2026-main"
 ```
 
 As you can see, my working directory is currently set at: **"/Users/steven/Desktop/intro-to-r-2026-main"**
@@ -259,20 +217,12 @@ Path <- "/Users/steven/Desktop/intro-to-r-2026-main/data/"
 
 ```
 
-```{r Actually Setting Working Directory, eval=TRUE,include=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-Path <- here::here("data/")
-``` 
-
 This format of assigning a value to an object, like we did with **Path** and **"/Users/steven/Desktop/intro-to-r-2026-main/data/"** is really important and we'll keep coming back to it throughout this tutorial. 
 
 We'll next use this **Path** object to set our working directory using the ```setwd()``` command. The ```setwd()``` command tells R where to look for files on our computer.
 
 ```{r, set working directory, eval=FALSE}
 setwd(Path) #use the setwd() function to assign the "Path" object that we created earlier as the working directory
-```
-
-```{r change root dir, echo=FALSE}
-knitr::opts_knit$set(root.dir = here::here("data"))
 ```
 
 Amazing! Now that our working directory is set to the correct file path, we can start load in the palmer-penguins data!
@@ -495,11 +445,6 @@ When you are done, open `penguin_chinstrap` with `View(penguin_chinstrap)` or cl
 ```{r subsetting exercise, code="'\n\n\n\n'", results=F}
 
   
-```
-
-```{r subsetting exercise - hidden, eval=F, include=F}
-penguin_chinstrap <- penguins %>%
-  filter(species == "Chinstrap")
 ```
 
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol2.r)
@@ -782,22 +727,6 @@ Let's try an exercise where we pivot data from wide to long!
 ```{r Pivot Exercise, code="'\n\n\n\n'", results=F}
 
 
-```
-
-
-
-
-```{r Pivot Exercise - hidden, eval=F, include=F}
-#1) Subset the following columns from the penguin_merged data frame and store them in a new data frame called "penguin_pivot_exercise": sample_number, species, bill_length_mm, bill_depth_mm
-penguin_pivot_exercise <- penguins_merged %>%
-  select(sample_number, species, bill_length_mm, bill_depth_mm)
-
-
-#2) Pivot the data frame from wide to long
-penguin_pivot_exercise_long <- penguin_pivot_exercise %>% pivot_longer(
-                        cols=c("bill_length_mm", "bill_depth_mm"), #The names of the columns to pivot
-                        names_to = "bill_measure", #The name for the new character column
-                        values_to = "length") #The name for the new values column
 ```
 
 [Click for solution](https://github.com/steventmartinez/intro-to-r-2026/blob/main/solutions/sol3.r)
