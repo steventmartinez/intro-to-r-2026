@@ -811,7 +811,7 @@ We're going to focus on three common statistical analyses: t-tests, ANOVAs, and 
 
 We'll continue our focus on comparing the length of different anatomical parts (bill, flipper, and culmen) across penguin species in our statistical analyses below!
 
-![](images/psychology statistics.jpeg){width=60%}
+![](images/psychology statistics.jpeg){width=70%}
 
 
 ## Prepping data before analyses
@@ -835,7 +835,7 @@ penguins_length <- penguins_length %>% drop_na()
 
 Now our data is ready to be analyzed!
 
-## t-tests!
+## T-tests
 
 A t-test can be used when both the predictor variable consists of two categorical options and the outcome or dependent variable is numeric in value. A t-test tells you how significant the differences between these categories or groups are. In other words, it lets you know if the differences between the means of two groups could have observed by chance. We could imagine a situation where an evil teacher told half of the class before a test the right chapter to study from and told the other half of the class the wrong chapter to study from. The two categories or groups might be Right Chapter and Wrong Chapter and the outcome variable would be Test Score. Using a T-Test, we could determine whether studying from the right chapter produces higher test scores. 
 
