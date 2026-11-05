@@ -84,13 +84,14 @@ That’s because a typical script will interpret any text as a command, unless t
 
 ![](images/RMarkdown_blah.png){width=35%}
 
+Here's a quick overview of the R Markdown chunk buttons you'll use most often:
 
-Here's a quick overview of the different R Markdown buttons:
-
-**-To minimize entire chunks and their output**, press the "Fold code" [![Minimization Arrow](images/ChunkMin.png)] on the left side of the window.<br>
-**-To run specific R markdown chunks**, press the "Run Current Chunk" button [![Run Command](images/ChunkRun.png)] in the upper right corner of the chunk.<br>
-**-To run all code up to the current R Markdown chunk**, press the "Run All Chunks Above" [![Run All Chunks Command](images/ChunkRunAll.png)].<br> 
-**-To toggle the settings for a given R Markdown chunk**, press the "Modify Chunk Options" button [![Settings Command](images/ChunkSettings.png)].
+| Button | Name | Where to find it | What it does |
+|:------:|:-----|:-----------------|:-------------|
+| ![](images/ChunkRun.png){height=22px} | **Run Current Chunk** | Top-right corner of the chunk | Runs all the code in this chunk |
+| ![](images/ChunkRunAll.png){height=22px} | **Run All Chunks Above** | Top-right corner of the chunk | Runs every chunk *above* this one, which is handy for catching up after restarting R |
+| ![](images/ChunkMin.png){height=22px} | **Fold Code** | Left side, next to the line numbers | Collapses (hides) the chunk and its output to save space |
+| ![](images/ChunkSettings.png){height=22px} | **Modify Chunk Options** | Top-right corner of the chunk | Opens settings for the chunk, like whether to show its code or output |
 
 
   
