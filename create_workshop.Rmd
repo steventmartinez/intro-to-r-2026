@@ -183,12 +183,12 @@ The palmerpenguins data contains two datasets:
 <br>
 Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE 9(3):e90081. https://doi.org/10.1371/journal.pone.0090081
 
-# Working Directories
+# Working Directory
 
 
 ## File Paths
 
-Before we start talking about "working directories", let's quickly unpack what a "file path" is on a computer.
+Before we start talking about a "working directory", let's quickly unpack what a "file path" is on a computer.
 
 "File paths" is just a fancy way to refer to the folders and subfolders that exist on someone's computer. Understanding how to navigate file paths is really important for being able to access specific files that you want to work with!
 
